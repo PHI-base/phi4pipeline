@@ -12,8 +12,8 @@ from phi4pipeline.release import prepare_for_excel
 from phi4pipeline.validate import validate_phibase
 
 parser = argparse.ArgumentParser(
-  prog='phi4pipeline',
-  description='Apply cleaning to the PHI-base 4 spreadsheet.'
+    prog='phi4pipeline',
+    description='Apply cleaning to the PHI-base 4 spreadsheet.',
 )
 parser.add_argument(
     'input',
