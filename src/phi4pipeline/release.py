@@ -21,6 +21,20 @@ def restore_header_rows(column_header_mapping, phi_df):
     return phi_df
 
 
+def prepare_for_zenodo(phi_df):
+    """Prepare the PHI-base DataFrame for export as a CSV file.
+
+    :param phi_df: the PHI-base DataFrame
+    :type phi_df: pandas.DataFrame
+    :return: the PHI-base DataFrame
+    :rtype: pandas.DataFrame
+    """
+    # The following columns contain personal data that we may not have
+    # consent to redistribute.
+    exclude_columns = ['author_email', 'species_expert', 'entered_by']
+    return phi_df.drop(exclude_columns, axis=1)
+
+
 def prepare_for_excel(phi_df, column_mapping):
     """Prepare the PHI-base DataFrame for export to an Excel file.
 

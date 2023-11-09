@@ -8,7 +8,7 @@ import argparse
 
 from phi4pipeline.clean import clean_phibase
 from phi4pipeline.load import get_column_header_mapping, load_excel
-from phi4pipeline.release import prepare_for_excel
+from phi4pipeline.release import prepare_for_excel, prepare_for_zenodo
 from phi4pipeline.validate import validate_phibase
 
 parser = argparse.ArgumentParser(
@@ -56,6 +56,7 @@ if args.target == 'excel':
     phi_df = prepare_for_excel(phi_df, column_mapping)
     phi_df.to_excel(args.output, index=False)
 elif args.target == 'zenodo':
+    phi_df = prepare_for_zenodo(phi_df)
     phi_df.to_csv(args.output, index=False)
 else:
     # This should never be reached due to the choices parameter of argparse
