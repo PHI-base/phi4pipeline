@@ -141,7 +141,7 @@ def format_tissue_names(tissues):
         'Urine',
     ]
     pattern = re.compile(fr"\b({'|'.join(words_to_lowercase)})\b")
-    replacements = {word: word.title() for word in words_to_lowercase}
+    replacements = {word: word.lower() for word in words_to_lowercase}
     replace = lambda match: replacements[match.group(0)]
     return tissues.str.replace(pattern, replace)
 
