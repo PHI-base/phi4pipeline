@@ -37,10 +37,26 @@ parser.add_argument(
     type=str,
     help='the output path for the cleaned PHI-base 4 spreadsheet',
 )
+parser.add_argument(
+    '-t',
+    '--target',
+    metavar='TARGET',
+    type=str,
+    default='excel',
+    choices=['excel', 'zenodo'],
+    help='the release target for the processed spreadsheet (excel or zenodo)',
+)
 args = parser.parse_args()
 phi_df = load_excel(args.input, args.sheet)
 column_mapping = get_column_header_mapping(phi_df)
 phi_df = clean_phibase(phi_df)
 validate_phibase(phi_df)
-phi_df = prepare_for_excel(phi_df, column_mapping)
-phi_df.to_excel(args.output, index=False)
+
+if args.target == 'excel':
+    phi_df = prepare_for_excel(phi_df, column_mapping)
+    phi_df.to_excel(args.output, index=False)
+elif args.target == 'zenodo':
+    phi_df.to_csv(args.output, index=False)
+else:
+    # This should never be reached due to the choices parameter of argparse
+    raise ValueError(f'unsupported target type: {args.target}')
