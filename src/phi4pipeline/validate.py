@@ -41,12 +41,6 @@ def validate_phibase(phi_df):
             '(; (Ensembl: )?[\w.]+?)*|Myc .+|SPA0021 sRNA'
         ),
         'nt_sequence': '[ACGT]+',
-        'interacting_partners_id': (
-            '(?:.+ )?(?:UniProt: (?:[0-9A-Z]+|no data found)'
-            '|(?:GenBank|Ensembl Genomes): (?:\w+|no data found))'
-            '(?:; (?:no data found|(?:(?:.+, )?(?:UniProt: (?:[0-9A-Z]+|no data found)'
-            '|(?:GenBank|Ensembl Genomes): (?:\w+|no data found)))))*'
-        ),
         'multiple_mutation': 'PHI:\d+(?:; PHI:\d+)*',
         'pathogen_species': "[A-Z][a-z]+ (?:sp\. '.+?'|[a-z]+(?:-[a-z]+)?)(?: VGIII)?",
         'host_species': (
