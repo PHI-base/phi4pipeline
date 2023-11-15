@@ -403,6 +403,7 @@ def apply_replacements(phi_df):
             'chromosome8': 'chromosome 8',
         },
         'interacting_partners_id': {
+            'Uniport': 'UniProt',
             '(?i)uniprot': 'UniProt',
             '(?i)gene?bank': 'GenBank',
             'AAA23130; CAR54869; CAR53776': (
