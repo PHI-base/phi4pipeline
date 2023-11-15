@@ -414,6 +414,7 @@ def apply_replacements(phi_df):
             'Q9M5J9': 'UniProt: Q9M5J9',
             ';$': '',
             ':(?! )': ': ',
+            '\s*;\s*': '; ',
         },
         'multiple_mutation': {
             '^no$': np.nan,
