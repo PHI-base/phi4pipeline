@@ -526,6 +526,18 @@ def apply_replacements(phi_df):
             '(?i)rres': 'RRes',
             '\s*/\s*': '; ',
         },
+        'comments': {
+            r'^s$': np.nan,
+            r'\.\\': '.',
+            r'^Asence\b': 'absence',
+            '\( ': '(',
+            ' \)': ')',
+            'H\. Pylori': 'H. pylori',
+            ' & ': ' and ',
+            ';$': '',
+            '\N{WHITE UP-POINTING SMALL TRIANGLE}': '\N{GREEK CAPITAL LETTER DELTA}',
+            '\N{RIGHT TRIANGLE}': '\N{GREEK CAPITAL LETTER DELTA}',
+        }
     }
     return phi_df.replace(replacements, regex=True)
 
