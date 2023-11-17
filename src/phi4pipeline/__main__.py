@@ -57,7 +57,7 @@ if args.target == 'excel':
     phi_df.to_excel(args.output, index=False)
 elif args.target == 'zenodo':
     phi_df = prepare_for_zenodo(phi_df)
-    phi_df.to_csv(args.output, index=False, lineterminator='\r\n')
+    phi_df.to_csv(args.output, index=False, line_terminator='\r\n')
 else:
     # This should never be reached due to the choices parameter of argparse
     raise ValueError(f'unsupported target type: {args.target}')
