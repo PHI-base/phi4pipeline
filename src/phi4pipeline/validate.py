@@ -4,6 +4,40 @@
 
 import re
 
+import pandas as pd
+
+
+def validate_interacting_partners_id(interacting_partners_ids):
+    databases = {'UniProt', 'GenBank', 'EMBL', 'Ensembl Genomes'}
+    invalid = []
+    for row in interacting_partners_ids.values:
+        if pd.isna(row):
+            continue
+        level_1 = row.split('; ')
+        for s1 in level_1:
+            if s1 == 'no data found':
+                continue
+            level_2 = s1.split(', ')
+            try:
+                if len(level_2) > 1:
+                    gene = level_2[0]
+                    assert gene and not gene.isspace()
+                    level_2 = level_2[1:]
+                for s2 in level_2:
+                    level_3 = s2.split(': ')
+                    assert len(level_3) == 2
+                    db, accession = level_3
+                    assert db in databases
+                    assert accession and not accession.isspace()
+            except AssertionError:
+                invalid.append(row)
+    if invalid:
+        invalid_values = '\n'.join(invalid)
+        error_message = (
+            f'column interacting_partners_id has invalid values:\n{invalid_values}'
+        )
+        assert False, error_message
+
 
 def validate_phibase(phi_df):
     """Validate values in all columns of PHI-base.
@@ -84,3 +118,5 @@ def validate_phibase(phi_df):
             invalid_values = '\n'.join(invalid_rows.values)
             error_message = f'column {column_name} has invalid values:\n{invalid_values}'
             assert False, error_message
+
+    validate_interacting_partners_id(phi_df.interacting_partners_id)
