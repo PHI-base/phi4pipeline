@@ -309,6 +309,54 @@ def parse_go_annotation(go_annotation):
     return series
 
 
+def parse_interacting_partners_id(interacting_partners_ids):
+    pattern = re.compile(
+        r'(?P<db>UniProt|GenBank|EMBL|Ensembl Genomes)'
+        r'|(?P<nan>no data found)'
+        r'|(?P<word>\S+)'
+    )
+    parsed_rows = []
+    for value in interacting_partners_ids.values:
+        if pd.isna(value):
+            parsed_rows.append(value)
+            continue
+        parsed = []
+        partner = []
+        state = None
+        for match in pattern.finditer(value):
+            text = match.group(0)
+            match match.lastgroup:
+                case 'db':
+                    if state == 'gene':
+                        parsed.append(f"{' '.join(partner)},")
+                        partner = []
+                    parsed.append(f'{text}:')
+                    state = 'db'
+                case 'nan':
+                    parsed.append('no data found;')
+                    state = None
+                case 'word':
+                    if text in (':', ';', ','):
+                        continue
+                    if state == 'db':
+                        text = text.rstrip(';')
+                        parsed.append(f'{text};')
+                        state = None
+                    else:
+                        partner.append(text)
+                        state = 'gene'
+                case _:
+                    raise NotImplementedError
+        parsed_rows.append(' '.join(parsed).rstrip(';'))
+
+    series = pd.Series(
+        parsed_rows,
+        index=interacting_partners_ids.index,
+        name=interacting_partners_ids.name,
+    )
+    return series
+
+
 def get_converted_curation_dates(curation_dates):
     """Convert curation dates in PHI-base to ISO 8601 format.
 
@@ -1338,5 +1386,8 @@ def clean_phibase(phi_df):
     phi_df.mutant_phenotype = phi_df.mutant_phenotype.str.lower()
     phi_df.gene_inducer_id = parse_gene_inducer_ids(phi_df.gene_inducer_id)
     phi_df.go_annotation = parse_go_annotation(phi_df.go_annotation)
+    phi_df.interacting_partners_id = (
+        parse_interacting_partners_id(phi_df.interacting_partners_id)
+    )
 
     return phi_df
