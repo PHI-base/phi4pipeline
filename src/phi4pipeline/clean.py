@@ -409,9 +409,9 @@ def apply_replacements(phi_df):
             'AAA23130; CAR54869; CAR53776': (
                 'GenBank: AAA23130; GenBank: CAR54869; GenBank: CAR53776'
             ),
-            'EHA50760': 'GenBank: EHA50760',
-            'EAL89498': 'GenBank: EAL89498',
-            'Q9M5J9': 'UniProt: Q9M5J9',
+            '^EHA50760$': 'GenBank: EHA50760',
+            '^EAL89498$': 'GenBank: EAL89498',
+            '^Q9M5J9$': 'UniProt: Q9M5J9',
             ';$': '',
             ':(?! )': ': ',
             '\s*;\s*': '; ',
