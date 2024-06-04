@@ -1,0 +1,57 @@
+{
+    "resources": [
+      {
+        "profile": "tabular-data-resource",
+        "path": "phi-base_v{version}.csv",
+        "name": "phi-base_v{version}",
+        "title": "Pathogen-Host Interaction Database, version {version}",
+        "description": "Data from version {version} of PHI-base, exported as a single table in CSV format.",
+        "format": "csv",
+        "mediatype": "text/csv",
+        "hash": "sha1:{phibase_hash}",
+        "bytes": "{phibase_bytes}",
+        "encoding": "utf-8",
+        "schema": "phi-base_schema.json",
+        "dialect": {
+          "csvddfVersion": 1.2,
+          "delimiter": ",",
+          "header": true,
+          "lineTerminator": "\r\n",
+          "quoteChar": "\"",
+          "doubleQuote": true,
+          "skipInitialSpace": false
+        }
+      },
+      {
+        "path": "phi-base_v{version}_fasta.fas",
+        "name": "phi-base_v{version}_fasta",
+        "title": "PHI-base {version} FASTA file",
+        "description": "Amino acid sequences, in FASTA format, for all genes in PHI-base {version} (where sequences are available).",
+        "format": "fasta",
+        "mediatype": "text/x-fasta",
+        "hash": "sha1:{fasta_hash}",
+        "bytes": "{fasta_bytes}",
+        "encoding": "ascii"
+      }
+    ],
+    "profile": "tabular-data-package",
+    "name": "phi-base",
+    "title": "Pathogen-Host Interaction Database",
+    "id": "{doi}",
+    "version": "{version}",
+    "homepage": "http://www.phi-base.org",
+    "description": "The pathogen-host interaction database (PHI-base) is an online database that catalogues experimentally-verified pathogenicity, virulence and effector genes from bacterial, fungal and oomycete pathogens, which infect human, animal, plant, insect, fish and fungal hosts. Plant endophytes are also included.\n\nPHI-base aims to aid the discovery of genes in pathogens that are medically and agronomically important, and that may be potential targets for chemical intervention. Information in PHI-base is manually curated by expert curators from peer-reviewed publications. The database is freely accessible to both academic and non-academic users.",
+    "keywords": [
+      "host-pathogen interaction",
+      "Rothamsted Research"
+    ],
+    "contributors": [],
+    "licenses": [
+      {
+        "name": "CC-BY-4.0",
+        "path": "https://creativecommons.org/licenses/by/4.0/",
+        "title": "Creative Commons Attribution 4.0 International"
+      }
+    ]
+  }
+  
