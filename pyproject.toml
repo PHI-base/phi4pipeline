@@ -25,7 +25,8 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-  "pandas==2.2.2"
+  "pandas==2.2.2",
+  "tabulate",
 ]
 
 [project.urls]
