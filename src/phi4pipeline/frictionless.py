@@ -1,6 +1,7 @@
 import hashlib
 import importlib
 import json
+import os
 import re
 from os import PathLike
 from string import Template
@@ -95,3 +96,27 @@ def get_file_sha1_hash(path: PathLike) -> str:
     with open(path, 'rb') as file:
         file_hash = hashlib.sha1(file.read()).hexdigest()
     return file_hash
+
+
+def make_datapackage_json(
+    csv_path: PathLike,
+    fasta_path: PathLike,
+    *,
+    version: str,
+    doi: str,
+) -> dict:
+    phibase_hash, fasta_hash = (
+        get_file_sha1_hash(path) for path in (csv_path, fasta_path)
+    )
+    phibase_bytes, fasta_bytes = (
+        os.path.getsize(path) for path in (csv_path, fasta_path)
+    )
+    format_args = {
+        'version': version,
+        'doi': f'https://doi.org/{doi}',
+        'phibase_hash': phibase_hash,
+        'phibase_bytes': phibase_bytes,
+        'fasta_hash': fasta_hash,
+        'fasta_bytes': fasta_bytes,
+    }
+    return load_formatted_datapackage(format_args)

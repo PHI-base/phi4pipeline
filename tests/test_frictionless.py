@@ -8,6 +8,7 @@ from phi4pipeline.frictionless import (
     format_datapackage_readme,
     get_file_sha1_hash,
     load_formatted_datapackage,
+    make_datapackage_json,
 )
 
 DATA_DIR = importlib.resources.files('phi4pipeline') / 'metadata'
@@ -30,7 +31,7 @@ def test_load_formatted_datapackage(datapackage_json):
         'version': VERSION,
         'doi': f'https://doi.org/{DOI}',
         'phibase_hash': '2f3c683d41d46de6a0a20f56ba29113ab1449936',
-        'phibase_bytes': '8998',
+        'phibase_bytes': '8973',
         'fasta_hash': '1a65c4809dfa91ea35ae0bd5b3f5c6221e0eab35',
         'fasta_bytes': '5632',
     }
@@ -108,4 +109,15 @@ def test_format_datapackage_readme():
 )
 def test_get_file_sha1_hash(path, expected):
     actual = get_file_sha1_hash(path)
+    assert actual == expected
+
+
+def test_make_datapackage_json_str(datapackage_json):
+    actual = make_datapackage_json(
+        CSV_PATH,
+        FASTA_PATH,
+        version=VERSION,
+        doi=DOI,
+    )
+    expected = datapackage_json
     assert actual == expected
