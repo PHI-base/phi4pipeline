@@ -12,7 +12,10 @@ from phi4pipeline.frictionless import (
 
 DATA_DIR = importlib.resources.files('phi4pipeline') / 'metadata'
 TEST_DATA_DIR = Path(__file__).parent / 'data'
-
+CSV_PATH = TEST_DATA_DIR / 'phi-base_v4-12_test.csv'
+FASTA_PATH = TEST_DATA_DIR / 'phi-base_v4-12_test.fas'
+VERSION = '4.12'
+DOI = '10.5281/zenodo.5356871'
 
 @pytest.fixture
 def datapackage_json():
@@ -25,8 +28,8 @@ def datapackage_json():
 def test_load_formatted_datapackage(datapackage_json):
     template_path = DATA_DIR / 'datapackage_template.json'
     format_args = {
-        'version': '4.12',
-        'doi': f'https://doi.org/10.5281/zenodo.5356871',
+        'version': VERSION,
+        'doi': f'https://doi.org/{DOI}',
         'phibase_hash': '2f3c683d41d46de6a0a20f56ba29113ab1449936',
         'phibase_bytes': '8998',
         'fasta_hash': '1a65c4809dfa91ea35ae0bd5b3f5c6221e0eab35',
@@ -51,11 +54,11 @@ def test_format_datapackage_readme():
         expected = text_file.read()
 
     format_args = {
-        'version': '4.12',
+        'version': VERSION,
         'semver': '1.0.0',
         'year': '2021',
-        'doi': '10.5281/zenodo.5356871',
-        'doi_url': 'https://doi.org/10.5281/zenodo.5356871',
+        'doi': DOI,
+        'doi_url': f'https://doi.org/{DOI}',
     }
     contributors_data = [
         {
@@ -93,12 +96,12 @@ def test_format_datapackage_readme():
     'path,expected',
     [
         pytest.param(
-            TEST_DATA_DIR / 'phi-base_v4-12_test.csv',
+            CSV_PATH,
             '2f3c683d41d46de6a0a20f56ba29113ab1449936',
             id='csv',
         ),
         pytest.param(
-            TEST_DATA_DIR / 'phi-base_v4-12_test.fas',
+            FASTA_PATH,
             '1a65c4809dfa91ea35ae0bd5b3f5c6221e0eab35',
             id='fasta',
         ),
