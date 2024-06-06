@@ -4,14 +4,14 @@ from pathlib import Path
 
 import pytest
 
-DATA_DIR = importlib.resources.files('phi4pipeline') / 'metadata'
-TEST_DATA_DIR = Path(__file__).parent / 'data'
-
 from phi4pipeline.frictionless import (
     format_datapackage_readme,
     get_file_sha1_hash,
     load_formatted_datapackage,
 )
+
+DATA_DIR = importlib.resources.files('phi4pipeline') / 'metadata'
+TEST_DATA_DIR = Path(__file__).parent / 'data'
 
 
 def test_load_formatted_datapackage():
