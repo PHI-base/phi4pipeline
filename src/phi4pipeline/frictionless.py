@@ -1,3 +1,4 @@
+import hashlib
 import json
 import re
 from os import PathLike
@@ -87,3 +88,9 @@ def format_datapackage_readme(
     }
     formatted_readme_str = readme_str.format(**format_args, **format_args_tables)
     return formatted_readme_str
+
+
+def get_file_sha1_hash(path: PathLike) -> str:
+    with open(path, 'rb') as file:
+        file_hash = hashlib.sha1(file.read()).hexdigest()
+    return file_hash

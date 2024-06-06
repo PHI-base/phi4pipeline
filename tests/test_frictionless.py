@@ -2,11 +2,14 @@ import importlib.resources
 import json
 from pathlib import Path
 
+import pytest
+
 DATA_DIR = importlib.resources.files('phi4pipeline') / 'metadata'
 TEST_DATA_DIR = Path(__file__).parent / 'data'
 
 from phi4pipeline.frictionless import (
     format_datapackage_readme,
+    get_file_sha1_hash,
     load_formatted_datapackage,
 )
 
@@ -80,4 +83,24 @@ def test_format_datapackage_readme():
         data_stats=data_stats,
         data_dict=data_dict,
     )
+    assert actual == expected
+
+
+@pytest.mark.parametrize(
+    'path,expected',
+    [
+        pytest.param(
+            TEST_DATA_DIR / 'phi-base_v4-12_test.csv',
+            '2f3c683d41d46de6a0a20f56ba29113ab1449936',
+            id='csv',
+        ),
+        pytest.param(
+            TEST_DATA_DIR / 'phi-base_v4-12_test.fas',
+            '1a65c4809dfa91ea35ae0bd5b3f5c6221e0eab35',
+            id='fasta',
+        ),
+    ],
+)
+def test_get_file_sha1_hash(path, expected):
+    actual = get_file_sha1_hash(path)
     assert actual == expected
