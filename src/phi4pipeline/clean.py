@@ -143,7 +143,7 @@ def format_tissue_names(tissues):
     pattern = re.compile(fr"\b({'|'.join(words_to_lowercase)})\b")
     replacements = {word: word.lower() for word in words_to_lowercase}
     replace = lambda match: replacements[match.group(0)]
-    return tissues.str.replace(pattern, replace)
+    return tissues.str.replace(pattern, replace, regex=True)
 
 
 def parse_gene_inducer_ids(gene_inducer_ids):
