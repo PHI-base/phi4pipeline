@@ -1,4 +1,5 @@
 import hashlib
+import importlib
 import json
 import re
 from os import PathLike
@@ -6,11 +7,11 @@ from string import Template
 
 import pandas as pd
 
+DATA_DIR = importlib.resources.files('phi4pipeline') / 'metadata'
 
-def load_formatted_datapackage(
-    template_path: PathLike, format_args: dict[str, str]
-) -> dict:
 
+def load_formatted_datapackage(format_args: dict[str, str]) -> dict:
+    template_path = DATA_DIR / 'datapackage_template.json'
     with open(template_path, encoding='utf-8') as file:
         template_str = file.read()
     template = Template(template_str)

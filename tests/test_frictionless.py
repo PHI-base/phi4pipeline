@@ -26,7 +26,6 @@ def datapackage_json():
 
 
 def test_load_formatted_datapackage(datapackage_json):
-    template_path = DATA_DIR / 'datapackage_template.json'
     format_args = {
         'version': VERSION,
         'doi': f'https://doi.org/{DOI}',
@@ -35,7 +34,7 @@ def test_load_formatted_datapackage(datapackage_json):
         'fasta_hash': '1a65c4809dfa91ea35ae0bd5b3f5c6221e0eab35',
         'fasta_bytes': '5632',
     }
-    actual = load_formatted_datapackage(template_path, format_args)
+    actual = load_formatted_datapackage(format_args)
     expected = datapackage_json
     assert actual == expected
 
