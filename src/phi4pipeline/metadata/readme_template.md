@@ -23,7 +23,7 @@ targets for chemical intervention.
 Each entry in PHI-base is curated by domain experts and is supported by
 strong experimental evidence, as well as references to the literature in
 which the original experiments are described. Each gene has a detailed
-description of the predicted protein’s function during the host
+description of the predicted protein's function during the host
 infection process. To facilitate data interoperability, we have
 annotated genes using controlled vocabularies and links to external
 sources (UniProt, Gene Ontology, Enzyme Commission, NCBI Taxonomy, EMBL,
