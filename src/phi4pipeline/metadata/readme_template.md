@@ -70,7 +70,9 @@ supplementary FASTA file.
 PHI-base version {version} was funded by the [Biotechnology and
 Biological Sciences Research
 Council](http://dx.doi.org/10.13039/501100000268) (BBSRC) through the
-Bioinformatics and biological resources: {grant_year} grant.
+BBR award "A FAIR community resource for pathogens, hosts and their 
+interactions to enhance global food security and human health"
+\[BB/S020020/1\].
 
 ## Technical information
 
