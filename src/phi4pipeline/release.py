@@ -32,7 +32,7 @@ def prepare_for_zenodo(phi_df):
     # The following columns contain personal data that we may not have
     # consent to redistribute.
     exclude_columns = ['author_email', 'species_expert', 'entered_by']
-    return phi_df.drop(exclude_columns, axis=1)
+    return phi_df.drop(exclude_columns, axis=1, errors='ignore')
 
 
 def prepare_for_excel(phi_df, column_mapping):
