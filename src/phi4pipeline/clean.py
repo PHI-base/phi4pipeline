@@ -52,7 +52,7 @@ def fix_whitespace(phi_df):
     object_columns = phi_df.select_dtypes('object')
     for col in object_columns:
         na_count = phi_df[col].isna().sum()
-        replaced = phi_df[col].str.replace(whitespace, ' ').str.strip()
+        replaced = phi_df[col].str.replace(whitespace, ' ', regex=True).str.strip()
         phi_df[col] = phi_df[col].mask(replaced.notna(), replaced)
         assert na_count == phi_df[col].isna().sum()
     return phi_df
@@ -102,7 +102,7 @@ def get_formatted_disease_names(diseases):
     pattern = re.compile(fr"\b({'|'.join(words_to_capitalize)})\b")
     replacements = {word: word.title() for word in words_to_capitalize}
     replace = lambda match: replacements[match.group(0)]
-    return diseases.str.lower().str.replace(pattern, replace)
+    return diseases.str.lower().str.replace(pattern, replace, regex=True)
 
 
 def format_tissue_names(tissues):
@@ -374,7 +374,7 @@ def get_converted_curation_dates(curation_dates):
         month_day_pattern = re.compile(r'^([A-Z][a-z]{2})-(\d+)$')
         has_month_day_date = dates.str.match(month_day_pattern, na=False)
         month_day_dates = dates.loc[has_month_day_date]
-        fixed_dates = month_day_dates.str.replace(month_day_pattern, r'\2-\1')
+        fixed_dates = month_day_dates.str.replace(month_day_pattern, r'\2-\1', regex=True)
         return fixed_dates
 
     def convert_day_month_dates(dates):
