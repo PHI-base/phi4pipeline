@@ -57,7 +57,7 @@ def test_format_datapackage_readme():
 
     format_args = {
         'version': VERSION,
-        'semver': '1.0.0',
+        'semver': '4.12.0',
         'year': '2021',
         'doi': DOI,
         'doi_url': f'https://doi.org/{DOI}',
@@ -77,11 +77,11 @@ def test_format_datapackage_readme():
         },
     ]
     data_stats = {
-        'n_pubs': 20,
-        'n_interactions': 25,
-        'n_pathogen_genes': 4,
-        'n_pathogens': 5,
-        'n_hosts': 6,
+        'n_pubs': 15,
+        'n_interactions': 13,
+        'n_pathogen_genes': 16,
+        'n_pathogens': 10,
+        'n_hosts': 10,
     }
 
     actual = format_datapackage_readme(

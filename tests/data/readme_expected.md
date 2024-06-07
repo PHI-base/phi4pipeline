@@ -2,7 +2,7 @@
 
 [doi:10.5281/zenodo.5356871](https://doi.org/10.5281/zenodo.5356871)
 
--   **Version:** 4.12 (1.0.0)
+-   **Version:** 4.12 (4.12.0)
 -   **Published:** 2021
 -   **Publisher:** PHI-base
 
@@ -35,11 +35,11 @@ The current version, 4.12, contains the following information:
 
 | Data Type                  |   Count |
 |----------------------------|---------|
-| Publications               |      20 |
-| Pathogen-host interactions |      25 |
-| Pathogen genes             |       4 |
-| Pathogen species           |       5 |
-| Host species               |       6 |
+| Publications               |      15 |
+| Pathogen-host interactions |      13 |
+| Pathogen genes             |      16 |
+| Pathogen species           |      10 |
+| Host species               |      10 |
 
 Amino acid sequences for each gene in PHI-base are included as a 
 supplementary FASTA file.
