@@ -19,7 +19,7 @@ def remove_excluded_columns(phi_df):
     :return: the PHI-base DataFrame
     :rtype: pandas.DataFrame
     """
-    excluded_columns = [
+    excluded_columns_multi = [
         ('__FG_mycotoxin__', 'FGmycotoxin'),
         ('Anti-infective (Chemical)', 'AntiinfectiveagentId'),
         ('Compound', 'Antiinfectiveagent'),
@@ -31,10 +31,18 @@ def remove_excluded_columns(phi_df):
         ('FRAC CODE', 'FRACCODE'),
         ('Additional comments  on anti-infectives', 'Antiinfectivecomments'),
     ]
-    second_header = phi_df.columns.get_level_values(1).str.strip()
+    second_header = (
+        phi_df.columns.get_level_values(1).str.strip()
+        if phi_df.columns.nlevels == 2
+        else phi_df.columns
+    )
     has_exclude_suffix = second_header.str.endswith('.Exclude')
     is_not_parsed = second_header == 'notParsed'
-    in_excluded = phi_df.columns.isin(excluded_columns)
+    in_excluded = (
+        phi_df.columns.isin(excluded_columns_multi)
+        if phi_df.columns.nlevels == 2
+        else phi_df.columns.isin(c[1] for c in excluded_columns_multi)
+    )
     exclude_index = has_exclude_suffix | is_not_parsed | in_excluded
     included_columns = phi_df.columns[~exclude_index]
     return phi_df[included_columns]
