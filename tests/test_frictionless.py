@@ -28,6 +28,40 @@ def datapackage_json():
     return datapackage
 
 
+@pytest.fixture
+def phibase_schema():
+    path = DATA_DIR / 'phi-base_schema.json'
+    with open(path, encoding='utf-8') as file:
+        schema = json.load(file)
+    return schema
+
+
+@pytest.fixture
+def contributors():
+    return [
+        {
+            'name': 'Josiah Carberry',
+            'orcid': '0000-0002-1825-0097',
+            'role': 'Principal Investigator',
+            'affiliation': 'Brown University',
+        },
+        {
+            'name': 'Jane Smith',
+            'orcid': '',
+            'role': 'Lead curator',
+            'affiliation': 'Acme Corporation',
+        },
+    ]
+
+
+@pytest.fixture
+def readme_templated():
+    path = TEST_DATA_DIR / 'readme_expected.md'
+    with open(path, encoding='utf-8') as file:
+        readme_templated = file.read()
+    return readme_templated
+
+
 def test_load_formatted_datapackage(datapackage_json):
     format_args = {
         'version': VERSION,
@@ -42,18 +76,10 @@ def test_load_formatted_datapackage(datapackage_json):
     assert actual == expected
 
 
-def test_format_datapackage_readme():
+def test_format_datapackage_readme(readme_templated, phibase_schema):
     readme_path = DATA_DIR / 'readme_template.md'
     with open(readme_path, encoding='utf-8') as text_file:
         readme_str = text_file.read()
-
-    data_dict_path = DATA_DIR / 'phi-base_schema.json'
-    with open(data_dict_path, encoding='utf-8') as json_file:
-        data_dict = json.load(json_file)
-
-    expected_path = TEST_DATA_DIR / 'readme_expected.md'
-    with open(expected_path, encoding='utf-8') as text_file:
-        expected = text_file.read()
 
     format_args = {
         'version': VERSION,
@@ -89,8 +115,9 @@ def test_format_datapackage_readme():
         format_args=format_args,
         contributors_data=contributors_data,
         data_stats=data_stats,
-        data_dict=data_dict,
+        data_dict=phibase_schema,
     )
+    expected = readme_templated
     assert actual == expected
 
 
