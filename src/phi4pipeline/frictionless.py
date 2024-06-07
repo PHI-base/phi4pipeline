@@ -120,3 +120,18 @@ def make_datapackage_json(
         'fasta_bytes': fasta_bytes,
     }
     return load_formatted_datapackage(format_args)
+
+
+def get_data_stats(phi_df: pd.DataFrame) -> dict[str, int]:
+    return {
+        'n_pubs': phi_df.pmid.nunique(),
+        'n_interactions': (
+            phi_df[['pathogen_species', 'host_species']]
+            .drop_duplicates()
+            .value_counts()
+            .sum()
+        ),
+        'n_pathogen_genes': phi_df.gene.nunique(),
+        'n_pathogens': phi_df.pathogen_species.nunique(),
+        'n_hosts':  phi_df.host_species.nunique(),
+    }

@@ -2,10 +2,12 @@ import importlib.resources
 import json
 from pathlib import Path
 
+import pandas as pd
 import pytest
 
 from phi4pipeline.frictionless import (
     format_datapackage_readme,
+    get_data_stats,
     get_file_sha1_hash,
     load_formatted_datapackage,
     make_datapackage_json,
@@ -120,4 +122,17 @@ def test_make_datapackage_json_str(datapackage_json):
         doi=DOI,
     )
     expected = datapackage_json
+    assert actual == expected
+
+
+def test_get_data_stats():
+    phi_df = pd.read_csv(TEST_DATA_DIR / 'phi-base_v4-12_cleaned.csv')
+    expected = {
+        'n_pubs': 15,
+        'n_interactions': 13,
+        'n_pathogen_genes': 16,
+        'n_pathogens': 10,
+        'n_hosts': 10,
+    }
+    actual = get_data_stats(phi_df)
     assert actual == expected
