@@ -148,6 +148,8 @@ def format_tissue_names(tissues):
         'Urinary',
         'Urine',
     ]
+    if tissues.isna().all():
+        return tissues
     pattern = re.compile(fr"\b({'|'.join(words_to_lowercase)})\b")
     replacements = {word: word.lower() for word in words_to_lowercase}
     replace = lambda match: replacements[match.group(0)]
@@ -268,6 +270,8 @@ def parse_gene_inducer_ids(gene_inducer_ids):
             parsed_rows.append(''.join(row_text))
         return parsed_rows
 
+    if gene_inducer_ids.isna().all():
+        return gene_inducer_ids
     # Trailing semicolons are a formatting error
     ids = gene_inducer_ids.str.rstrip(';').values
     pattern = make_pattern()
