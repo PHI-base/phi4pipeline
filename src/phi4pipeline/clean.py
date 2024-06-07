@@ -379,6 +379,7 @@ def get_converted_curation_dates(curation_dates):
 
     def month_day_to_day_month(dates):
         # Convert month-day (Oct 22) dates to day-month dates
+        dates = dates.astype(str)
         month_day_pattern = re.compile(r'^([A-Z][a-z]{2})-(\d+)$')
         has_month_day_date = dates.str.match(month_day_pattern, na=False)
         month_day_dates = dates.loc[has_month_day_date]
@@ -387,6 +388,7 @@ def get_converted_curation_dates(curation_dates):
 
     def convert_day_month_dates(dates):
         # Convert day-month dates (22 Oct) to ISO 8601
+        dates = dates.astype(str)
         day_month_pattern = re.compile(r'^\d+-[A-Z][a-z]{2}$')
         has_day_month_dates = dates.str.match(day_month_pattern, na=False)
         is_datetime = dates.apply(lambda x: isinstance(x, datetime))
@@ -396,7 +398,8 @@ def get_converted_curation_dates(curation_dates):
             pd.to_datetime(datetimes)
             .dt.year.astype(str)
             .reindex_like(dates)
-            .fillna(method='ffill')
+            .infer_objects(copy=False)
+            .ffill()
             .loc[has_day_month_dates]
         )
         # Append years to the day-month dates
@@ -406,8 +409,18 @@ def get_converted_curation_dates(curation_dates):
         fixed_dates = pd.to_datetime(day_month_year_dates, format='%d-%b-%Y')
         return fixed_dates
 
-    curation_dates = curation_dates.copy()
+    def convert_serial_dates(dates):
+        # Set object dtype to allow datetime64[ns] in column
+        dates = dates.astype(object)
+        is_int_date = dates.apply(lambda x: isinstance(x, int))
+        dates.loc[is_int_date] = pd.to_datetime(
+            pd.to_timedelta(dates, unit='d') + datetime(1900, 1, 1)
+        ).dt.date
+        return dates
+
+    curation_dates = curation_dates.copy().astype(object)
     if not pd.api.types.is_datetime64_any_dtype(curation_dates):
+        curation_dates.update(convert_serial_dates(curation_dates))
         curation_dates.update(month_day_to_day_month(curation_dates))
         curation_dates.update(convert_day_month_dates(curation_dates))
     curation_dates = pd.to_datetime(curation_dates)
