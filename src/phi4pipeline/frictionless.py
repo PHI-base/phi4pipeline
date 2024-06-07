@@ -135,3 +135,33 @@ def get_data_stats(phi_df: pd.DataFrame) -> dict[str, int]:
         'n_pathogens': phi_df.pathogen_species.nunique(),
         'n_hosts':  phi_df.host_species.nunique(),
     }
+
+
+def make_datapackage_readme(
+    csv_path: PathLike,
+    version: str,
+    semver: str,
+    year: int | str,
+    doi: str,
+    contributors_data: list[dict[str, str]],
+) -> str:
+    with open(DATA_DIR / 'readme_template.md', encoding='utf-8') as file:
+        readme_str = file.read()
+    with open(DATA_DIR / 'phi-base_schema.json', encoding='utf-8') as file:
+        data_dict = json.load(file)
+
+    data_stats = get_data_stats(pd.read_csv(csv_path))
+    format_args = {
+        'version': version,
+        'semver': semver,
+        'year': f'{year}',
+        'doi': doi,
+        'doi_url': f'https://doi.org/{doi}',
+    }
+    return format_datapackage_readme(
+        readme_str,
+        format_args=format_args,
+        contributors_data=contributors_data,
+        data_stats=data_stats,
+        data_dict=data_dict,
+    )

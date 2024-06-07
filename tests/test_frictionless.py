@@ -11,6 +11,7 @@ from phi4pipeline.frictionless import (
     get_file_sha1_hash,
     load_formatted_datapackage,
     make_datapackage_json,
+    make_datapackage_readme,
 )
 
 DATA_DIR = importlib.resources.files('phi4pipeline') / 'metadata'
@@ -162,4 +163,17 @@ def test_get_data_stats():
         'n_hosts': 10,
     }
     actual = get_data_stats(phi_df)
+    assert actual == expected
+
+
+def test_make_datapackage_readme(readme_templated, contributors):
+    actual = make_datapackage_readme(
+        csv_path=TEST_DATA_DIR / 'phi-base_v4-12_cleaned.csv',
+        version='4.12',
+        semver='4.12.0',
+        year=2021,
+        doi='10.5281/zenodo.5356871',
+        contributors_data=contributors,
+    )
+    expected = readme_templated
     assert actual == expected
