@@ -21,6 +21,7 @@ FASTA_PATH = TEST_DATA_DIR / 'phi-base_v4-12_test.fas'
 VERSION = '4.12'
 DOI = '10.5281/zenodo.5356871'
 
+
 @pytest.fixture
 def datapackage_json():
     path = TEST_DATA_DIR / 'datapackage_expected.json'

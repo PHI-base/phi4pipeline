@@ -133,7 +133,7 @@ def get_data_stats(phi_df: pd.DataFrame) -> dict[str, int]:
         ),
         'n_pathogen_genes': phi_df.gene.nunique(),
         'n_pathogens': phi_df.pathogen_species.nunique(),
-        'n_hosts':  phi_df.host_species.nunique(),
+        'n_hosts': phi_df.host_species.nunique(),
     }
 
 
