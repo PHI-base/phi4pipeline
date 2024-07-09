@@ -7,29 +7,71 @@ import pytest
 from phi4pipeline.cli import parse_args
 
 
-@pytest.mark.parametrize(
-    'args,expected',
-    [
-        (
-            ['sheet_path', '-s', 'sheet1', '-o', 'out_path'],
-            {
-                'input': 'sheet_path',
-                'output': 'out_path',
-                'sheet': 'sheet1',
-                'target': 'excel',
-            },
-        ),
-        (
-            ['sheet_path', '-s', 'sheet1', '-o', 'out_path', '-t', 'zenodo'],
-            {
-                'input': 'sheet_path',
-                'output': 'out_path',
-                'sheet': 'sheet1',
-                'target': 'zenodo',
-            },
-        ),
-    ],
-)
+test_parse_args_params = [
+    pytest.param(
+        [
+            'zenodo',
+            '--doi',
+            '10.5281/zenodo.5356871',
+            '-o',
+            'out_dir/',
+            'spreadsheet_path',
+        ],
+        {
+            'target': 'zenodo',
+            'contributors': None,
+            'doi': '10.5281/zenodo.5356871',
+            'fasta': None,
+            'input': 'spreadsheet_path',
+            'out_dir': 'out_dir/',
+            'year': None,
+        },
+        id='zenodo_required_only',
+    ),
+    pytest.param(
+        [
+            'zenodo',
+            '--contributors',
+            'contrib_path.csv',
+            '--doi',
+            '10.5281/zenodo.5356871',
+            '--fasta',
+            'fasta_path.fas',
+            '-o',
+            'out_dir/',
+            '--year',
+            '2021',
+            'spreadsheet_path.xlsx',
+        ],
+        {
+            'target': 'zenodo',
+            'contributors': 'contrib_path.csv',
+            'doi': '10.5281/zenodo.5356871',
+            'fasta': 'fasta_path.fas',
+            'input': 'spreadsheet_path.xlsx',
+            'out_dir': 'out_dir/',
+            'year': 2021,
+        },
+        id='zenodo_all_options',
+    ),
+    pytest.param(
+        [
+            'excel',
+            '-o',
+            'out_path.xlsx',
+            'spreadsheet_path.xlsx',
+        ],
+        {
+            'target': 'excel',
+            'input': 'spreadsheet_path.xlsx',
+            'output': 'out_path.xlsx',
+        },
+        id='excel',
+    ),
+]
+
+
+@pytest.mark.parametrize('args,expected', test_parse_args_params)
 def test_parse_args(args, expected):
     actual = parse_args(args)
     assert expected == vars(actual)

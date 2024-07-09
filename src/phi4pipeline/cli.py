@@ -10,40 +10,66 @@ from phi4pipeline.release import prepare_for_excel, prepare_for_zenodo
 
 
 def parse_args(args):
+    input_args = {
+        'metavar': 'SPREADSHEET',
+        'type': str,
+        'help': 'the path to the PHI-base 4 spreadsheet',
+    }
+
     parser = argparse.ArgumentParser(
         prog='phi4pipeline',
         description='Apply cleaning to the PHI-base 4 spreadsheet.',
     )
-    parser.add_argument(
-        'input',
-        metavar='SPREADSHEET',
-        type=str,
-        help='the path to the PHI-base 4 spreadsheet',
-    )
-    parser.add_argument(
-        '-s',
-        '--sheet',
-        metavar='SHEET',
+    subparsers = parser.add_subparsers(
+        dest='target',
         required=True,
-        type=str,
-        help='the name of the sheet in the spreadsheet to clean',
     )
-    parser.add_argument(
+
+    parser_excel = subparsers.add_parser('excel')
+    parser_excel.add_argument('input', **input_args)
+    parser_excel.add_argument(
         '-o',
         '--output',
         metavar='FILE',
         required=True,
         type=str,
+        help='the output directory for the datapackage files',
+    )
+
+    parser_zenodo = subparsers.add_parser('zenodo')
+    parser_zenodo.add_argument('input', **input_args)
+    parser_zenodo.add_argument(
+        '--contributors',
+        metavar='PATH',
+        type=str,
+        help='path to contributors file',
+    )
+    parser_zenodo.add_argument(
+        '--doi',
+        metavar='YEAR',
+        type=str,
+        required=True,
+        help='DOI for the dataset',
+    )
+    parser_zenodo.add_argument(
+        '--fasta',
+        metavar='PATH',
+        type=str,
+        help='path to FASTA file for the dataset',
+    )
+    parser_zenodo.add_argument(
+        '-o',
+        '--out_dir',
+        metavar='DIR',
+        required=True,
+        type=str,
         help='the output path for the cleaned PHI-base 4 spreadsheet',
     )
-    parser.add_argument(
-        '-t',
-        '--target',
-        metavar='TARGET',
-        type=str,
-        default='excel',
-        choices=['excel', 'zenodo'],
-        help='the release target for the processed spreadsheet (excel or zenodo)',
+    parser_zenodo.add_argument(
+        '--year',
+        metavar='YEAR',
+        type=int,
+        help='year of dataset publication',
     )
     return parser.parse_args(args)
 
