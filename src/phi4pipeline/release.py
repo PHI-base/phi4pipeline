@@ -4,6 +4,10 @@
 
 import pandas as pd
 
+from phi4pipeline.clean import clean_phibase
+from phi4pipeline.load import get_column_header_mapping, load_excel
+from phi4pipeline.validate import validate_phibase
+
 
 def restore_header_rows(column_header_mapping, phi_df):
     """Restore the original column headers of the PHI-base DataFrame.
@@ -21,7 +25,17 @@ def restore_header_rows(column_header_mapping, phi_df):
     return phi_df
 
 
-def prepare_for_zenodo(phi_df):
+def load_phibase_spreadsheet(spreadsheet_path, keep_headers=True):
+    phi_df = load_excel(spreadsheet_path)
+    column_mapping = get_column_header_mapping(phi_df)
+    phi_df = clean_phibase(phi_df)
+    validate_phibase(phi_df)
+    if keep_headers:
+        phi_df = restore_header_rows(column_mapping, phi_df)
+    return phi_df
+
+
+def prepare_for_zenodo(spreadsheet_path):
     """Prepare the PHI-base DataFrame for export as a CSV file.
 
     :param phi_df: the PHI-base DataFrame
@@ -31,11 +45,12 @@ def prepare_for_zenodo(phi_df):
     """
     # The following columns contain personal data that we may not have
     # consent to redistribute.
+    phi_df = load_phibase_spreadsheet(spreadsheet_path, keep_headers=False)
     exclude_columns = ['author_email', 'species_expert', 'entered_by']
     return phi_df.drop(exclude_columns, axis=1, errors='ignore')
 
 
-def prepare_for_excel(phi_df, column_mapping):
+def prepare_for_excel(spreadsheet_path):
     """Prepare the PHI-base DataFrame for export to an Excel file.
 
     Convert pandas timestamps to date strings (without times), and remove
@@ -48,7 +63,7 @@ def prepare_for_excel(phi_df, column_mapping):
     :return: the PHI-base DataFrame
     :rtype: pandas.DataFrame
     """
-    phi_df = restore_header_rows(column_mapping, phi_df)
+    phi_df = load_phibase_spreadsheet(spreadsheet_path)
 
     interacting_ids = ('Interacting protein - locus ID', 'InteractingpartnersId')
     if phi_df[interacting_ids].notna().any():
