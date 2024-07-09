@@ -49,6 +49,14 @@ supplementary FASTA file.
 
 {contributors_table}
 
+The data content for PHI-base {version} was curated by curators at
+Molecular Connections Pvt Ltd. in Bangalore, India.
+
+(Note: for data protection reasons, the names and affiliations of
+contributors cannot be included in the files within this dataset.
+You can view this information on the [Zenodo record page]({doi_url})
+for this dataset.)
+
 ## Conditions of use
 
 -   **Rights holder**: Rothamsted Research

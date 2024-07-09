@@ -97,6 +97,7 @@ def test_format_datapackage_readme(readme_templated, phibase_schema):
             'role': 'Principal Investigator',
             'affiliation': 'Brown University',
         },
+        # Curators with no ORCID should not be shown in the table
         {
             'name': 'Jane Smith',
             'orcid': '',

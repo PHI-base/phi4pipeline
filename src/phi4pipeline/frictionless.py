@@ -36,19 +36,16 @@ def format_datapackage_readme(
     def make_contributors_table(contributors_data):
         orcid_pattern = re.compile(r'^(\d{4}-\d{4}-\d{4}-(?:\d{4}|\d{3}X))$')
         renames = {
-            'name': 'Name',
             'orcid': 'ORCID ID',
             'role': 'Role',
-            'affiliation': 'Affiliation',
         }
         df = pd.DataFrame.from_records(contributors_data)
-        # Link ORCID IDs to ORCID page
+        has_orcid = df.orcid.str.match(orcid_pattern, na=False)
         df.orcid = df.orcid.str.replace(
             pat=orcid_pattern, repl=r'[\1](https://orcid.org/\1)', regex=True
         )
-        table_str = df.rename(columns=renames).to_markdown(
-            index=False, tablefmt=TABLE_FORMAT
-        )
+        display_df = df.loc[has_orcid, ['orcid', 'role']].rename(columns=renames)
+        table_str = display_df.to_markdown(index=False, tablefmt=TABLE_FORMAT)
         return table_str
 
     def make_data_stats_table(data_stats):
