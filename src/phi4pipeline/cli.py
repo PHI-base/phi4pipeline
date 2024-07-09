@@ -53,7 +53,7 @@ def parse_args(args):
 
 def run(args):
     args = parse_args(args)
-    phi_df = load_excel(args.input, args.sheet)
+    phi_df = load_excel(args.input)
     column_mapping = get_column_header_mapping(phi_df)
     phi_df = clean_phibase(phi_df)
     validate_phibase(phi_df)
