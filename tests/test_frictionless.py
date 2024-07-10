@@ -64,7 +64,7 @@ def readme_templated():
     return readme_templated
 
 
-def test_load_formatted_datapackage(datapackage_json):
+def test_load_formatted_datapackage(datapackage_json, contributors):
     format_args = {
         'version': VERSION,
         'doi': f'https://doi.org/{DOI}',
@@ -73,12 +73,12 @@ def test_load_formatted_datapackage(datapackage_json):
         'fasta_hash': '1a65c4809dfa91ea35ae0bd5b3f5c6221e0eab35',
         'fasta_bytes': '5632',
     }
-    actual = load_formatted_datapackage(format_args)
+    actual = load_formatted_datapackage(format_args, contributors)
     expected = datapackage_json
     assert actual == expected
 
 
-def test_format_datapackage_readme(readme_templated, phibase_schema):
+def test_format_datapackage_readme(readme_templated, phibase_schema, contributors):
     readme_path = DATA_DIR / 'readme_template.md'
     with open(readme_path, encoding='utf-8') as text_file:
         readme_str = text_file.read()
@@ -90,21 +90,6 @@ def test_format_datapackage_readme(readme_templated, phibase_schema):
         'doi': DOI,
         'doi_url': f'https://doi.org/{DOI}',
     }
-    contributors_data = [
-        {
-            'name': 'Josiah Carberry',
-            'orcid': '0000-0002-1825-0097',
-            'role': 'Principal Investigator',
-            'affiliation': 'Brown University',
-        },
-        # Curators with no ORCID should not be shown in the table
-        {
-            'name': 'Jane Smith',
-            'orcid': '',
-            'role': 'Lead curator',
-            'affiliation': 'Acme Corporation',
-        },
-    ]
     data_stats = {
         'n_pubs': 15,
         'n_interactions': 13,
@@ -116,7 +101,7 @@ def test_format_datapackage_readme(readme_templated, phibase_schema):
     actual = format_datapackage_readme(
         readme_str,
         format_args=format_args,
-        contributors_data=contributors_data,
+        contributors_data=contributors,
         data_stats=data_stats,
         data_dict=phibase_schema,
     )
@@ -144,12 +129,13 @@ def test_get_file_sha1_hash(path, expected):
     assert actual == expected
 
 
-def test_make_datapackage_json_str(datapackage_json):
+def test_make_datapackage_json_str(datapackage_json, contributors):
     actual = make_datapackage_json(
         CSV_PATH,
         FASTA_PATH,
         version=VERSION,
         doi=DOI,
+        contributors=contributors,
     )
     expected = datapackage_json
     assert actual == expected

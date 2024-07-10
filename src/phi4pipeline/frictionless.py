@@ -11,7 +11,7 @@ import pandas as pd
 DATA_DIR = importlib.resources.files('phi4pipeline') / 'metadata'
 
 
-def load_formatted_datapackage(format_args: dict[str, str]) -> dict:
+def load_formatted_datapackage(format_args: dict[str, str], contributors: dict) -> dict:
     template_path = DATA_DIR / 'datapackage_template.json'
     with open(template_path, encoding='utf-8') as file:
         template_str = file.read()
@@ -19,6 +19,18 @@ def load_formatted_datapackage(format_args: dict[str, str]) -> dict:
     datapackage = json.loads(template.substitute(**format_args))
     for resource in datapackage['resources']:
         resource['bytes'] = int(resource['bytes'])
+    # Extra caution: explicitly check for NaN since NaN is truthy
+    contributors_with_orcid = (
+        c for c in contributors if c['orcid'] and pd.notna(c['orcid'])
+    )
+    datapackage['contributors'] = [
+        {
+            'title': 'Anonymous contributor',
+            'path': f'https://orcid.org/{contrib["orcid"]}',
+            'role': 'contributor',
+        }
+        for contrib in contributors_with_orcid
+    ]
     return datapackage
 
 
@@ -101,6 +113,7 @@ def make_datapackage_json(
     *,
     version: str,
     doi: str,
+    contributors: dict,
 ) -> dict:
     phibase_hash, fasta_hash = (
         get_file_sha1_hash(path) for path in (csv_path, fasta_path)
@@ -116,7 +129,7 @@ def make_datapackage_json(
         'fasta_hash': fasta_hash,
         'fasta_bytes': fasta_bytes,
     }
-    return load_formatted_datapackage(format_args)
+    return load_formatted_datapackage(format_args, contributors)
 
 
 def get_data_stats(phi_df: pd.DataFrame) -> dict[str, int]:
