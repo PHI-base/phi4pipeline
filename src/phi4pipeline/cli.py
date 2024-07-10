@@ -83,5 +83,5 @@ def run(args):
         phi_df = prepare_for_zenodo(args.input)
         phi_df.to_csv(args.output, index=False, line_terminator='\r\n')
     else:
-        # This should never be reached due to the choices parameter of argparse
+        # argparse should prevent this from being reached
         raise ValueError(f'unsupported target type: {args.target}')
