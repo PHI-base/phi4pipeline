@@ -35,7 +35,7 @@ def load_phibase_spreadsheet(spreadsheet_path, keep_headers=True):
     return phi_df
 
 
-def prepare_for_zenodo(spreadsheet_path):
+def prepare_spreadsheet_for_zenodo(spreadsheet_path):
     """Prepare the PHI-base DataFrame for export as a CSV file.
 
     :param phi_df: the PHI-base DataFrame
@@ -50,7 +50,7 @@ def prepare_for_zenodo(spreadsheet_path):
     return phi_df.drop(exclude_columns, axis=1, errors='ignore')
 
 
-def prepare_for_excel(spreadsheet_path):
+def prepare_spreadsheet_for_excel(spreadsheet_path):
     """Prepare the PHI-base DataFrame for export to an Excel file.
 
     Convert pandas timestamps to date strings (without times), and remove

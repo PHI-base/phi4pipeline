@@ -6,7 +6,10 @@
 
 import argparse
 
-from phi4pipeline.release import prepare_for_excel, prepare_for_zenodo
+from phi4pipeline.release import (
+    prepare_spreadsheet_for_excel,
+    prepare_spreadsheet_for_zenodo,
+)
 
 
 def parse_args(args):
@@ -77,10 +80,10 @@ def parse_args(args):
 def run(args):
     args = parse_args(args)
     if args.target == 'excel':
-        phi_df = prepare_for_excel(args.input)
+        phi_df = prepare_spreadsheet_for_excel(args.input)
         phi_df.to_excel(args.output, index=False)
     elif args.target == 'zenodo':
-        phi_df = prepare_for_zenodo(args.input)
+        phi_df = prepare_spreadsheet_for_zenodo(args.input)
         phi_df.to_csv(args.output, index=False, line_terminator='\r\n')
     else:
         # argparse should prevent this from being reached
