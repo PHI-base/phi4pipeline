@@ -206,6 +206,13 @@ def normalize_column_names(phi_df):
     return phi_df
 
 
+def get_version_from_filename(path):
+    match = re.search(r'(\d[-.]\d\d)', path)
+    if match is None:
+        raise ValueError(f'No PHI-base version number found in path: {path}')
+    return match.group(1)
+
+
 def load_excel(path):
     """Load the PHI-base Excel spreadsheet from a given path.
 
@@ -216,13 +223,6 @@ def load_excel(path):
     :returns: the sheet as a pandas DataFrame
     :rtype: pandas.DataFrame
     """
-
-    def get_version_from_filename(path):
-        match = re.search(r'(\d[-.]\d\d)', path)
-        if match is None:
-            raise ValueError(f'No PHI-base version number found in path: {path}')
-        return match.group(1)
-
     phibase_version = get_version_from_filename(path)
     sheet_name = f'{phibase_version} phibase_all'
     return pd.read_excel(path, sheet_name, header=[0, 1])
