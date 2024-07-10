@@ -43,9 +43,8 @@ def prepare_spreadsheet_for_zenodo(spreadsheet_path):
     :return: the PHI-base DataFrame
     :rtype: pandas.DataFrame
     """
-    # The following columns contain personal data that we may not have
-    # consent to redistribute.
     phi_df = load_phibase_spreadsheet(spreadsheet_path, keep_headers=False)
+    # These columns contain personal information that should not be shared.
     exclude_columns = ['author_email', 'species_expert', 'entered_by']
     return phi_df.drop(exclude_columns, axis=1, errors='ignore')
 
@@ -65,9 +64,9 @@ def prepare_spreadsheet_for_excel(spreadsheet_path):
     """
     phi_df = load_phibase_spreadsheet(spreadsheet_path)
 
+    # Preserve existing behavior of truncating interacting partner IDs
     interacting_ids = ('Interacting protein - locus ID', 'InteractingpartnersId')
     if phi_df[interacting_ids].notna().any():
-        # Truncate column values to 92 characters
         phi_df[interacting_ids] = phi_df[interacting_ids].str.slice(stop=92)
 
     # pandas.Series.dt.date is needed to remove timestamps from dates
