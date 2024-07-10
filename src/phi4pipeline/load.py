@@ -248,3 +248,7 @@ def get_column_header_mapping(phi_df):
     return {
         norm_name: (header_0, header_1) for norm_name, header_0, header_1 in label_zip
     }
+
+
+def load_contributors_file(path):
+    return pd.read_csv(path).to_dict(orient='records', index=False)
