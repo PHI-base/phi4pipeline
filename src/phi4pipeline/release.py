@@ -2,10 +2,23 @@
 #
 # SPDX-License-Identifier: MIT
 
+import json
+import shutil
+from pathlib import Path
+
 import pandas as pd
 
 from phi4pipeline.clean import clean_phibase
-from phi4pipeline.load import get_column_header_mapping, load_excel
+from phi4pipeline.frictionless import (
+    make_datapackage_json,
+    make_datapackage_readme,
+)
+from phi4pipeline.load import (
+    get_column_header_mapping,
+    get_version_from_filename,
+    load_contributors_file,
+    load_excel,
+)
 from phi4pipeline.validate import validate_phibase
 
 
@@ -47,6 +60,49 @@ def prepare_spreadsheet_for_zenodo(spreadsheet_path):
     # These columns contain personal information that should not be shared.
     exclude_columns = ['author_email', 'species_expert', 'entered_by']
     return phi_df.drop(exclude_columns, axis=1, errors='ignore')
+
+
+def make_files_for_zenodo(
+    spreadsheet_path,
+    out_dir,
+    *,
+    doi,
+    year,
+    fasta_path=None,
+    contributors_path=None,
+):
+    out_dir = Path(out_dir)
+    phibase_version = get_version_from_filename(spreadsheet_path)
+    csv_filename = f'phi-base_{phibase_version}_data.csv'
+    csv_path = out_dir / csv_filename
+    fasta_filename = f'phi-base_{phibase_version}_fasta.fas'
+    fasta_out_path = out_dir / fasta_filename
+    contributors = load_contributors_file(contributors_path)
+
+    phi_df = prepare_spreadsheet_for_zenodo(spreadsheet_path)
+    # Write files now so we can calculate file hash and size.
+    phi_df.to_csv(csv_path, index=False, line_terminator='\r\n')
+    shutil.copyfile(fasta_path, fasta_out_path)
+
+    datapackage_json = make_datapackage_json(
+        csv_path,
+        fasta_out_path,
+        version=phibase_version,
+        doi=doi,
+    )
+    with open(out_dir / 'datapackage.json', encoding='utf-8') as f:
+        json.dump(datapackage_json, f, indent=4)
+
+    readme_text = make_datapackage_readme(
+        csv_path,
+        version=phibase_version,
+        semver=f'{phibase_version}.0',
+        year=year,
+        doi=doi,
+        contributors_data=contributors,
+    )
+    with open(out_dir / 'README.md', encoding='utf-8') as f:
+        f.write(readme_text)
 
 
 def prepare_spreadsheet_for_excel(spreadsheet_path):

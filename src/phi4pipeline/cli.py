@@ -7,8 +7,8 @@
 import argparse
 
 from phi4pipeline.release import (
+    make_files_for_zenodo,
     prepare_spreadsheet_for_excel,
-    prepare_spreadsheet_for_zenodo,
 )
 
 
@@ -83,8 +83,13 @@ def run(args):
         phi_df = prepare_spreadsheet_for_excel(args.input)
         phi_df.to_excel(args.output, index=False)
     elif args.target == 'zenodo':
-        phi_df = prepare_spreadsheet_for_zenodo(args.input)
-        phi_df.to_csv(args.output, index=False, line_terminator='\r\n')
+        make_files_for_zenodo(
+            spreadsheet_path=args.input,
+            out_dir=args.out_dir,
+            doi=args.doi,
+            year=args.year,
+            fasta_path=args.fasta,
+            contributors_path=args.contributors)
     else:
         # argparse should prevent this from being reached
         raise ValueError(f'unsupported target type: {args.target}')
