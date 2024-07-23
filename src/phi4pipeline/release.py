@@ -91,7 +91,7 @@ def make_files_for_zenodo(
         doi=doi,
         contributors=contributors,
     )
-    with open(out_dir / 'datapackage.json', encoding='utf-8') as f:
+    with open(out_dir / 'datapackage.json', 'w+', encoding='utf-8') as f:
         json.dump(datapackage_json, f, indent=4)
 
     readme_text = make_datapackage_readme(
@@ -102,7 +102,7 @@ def make_files_for_zenodo(
         doi=doi,
         contributors_data=contributors,
     )
-    with open(out_dir / 'README.md', encoding='utf-8') as f:
+    with open(out_dir / 'README.md', 'w+', encoding='utf-8') as f:
         f.write(readme_text)
 
 
