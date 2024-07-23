@@ -1,5 +1,5 @@
 import hashlib
-import importlib
+import importlib.resources
 import json
 import os
 import re
