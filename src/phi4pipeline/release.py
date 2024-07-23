@@ -81,7 +81,7 @@ def make_files_for_zenodo(
 
     phi_df = prepare_spreadsheet_for_zenodo(spreadsheet_path)
     # Write files now so we can calculate file hash and size.
-    phi_df.to_csv(csv_path, index=False, line_terminator='\r\n')
+    phi_df.to_csv(csv_path, index=False, lineterminator='\r\n')
     shutil.copyfile(fasta_path, fasta_out_path)
 
     datapackage_json = make_datapackage_json(
