@@ -58,7 +58,8 @@ supplementary FASTA file.
 | [0000-0002-1825-0097](https://orcid.org/0000-0002-1825-0097) | Principal Investigator |
 
 The data content for PHI-base 4.12 was curated by curators at
-Molecular Connections Pvt Ltd. in Bangalore, India.
+[Molecular Connections Pvt Ltd.](https://molecularconnections.com/)
+in Bangalore, India.
 
 (Note: for data protection reasons, the names and affiliations of
 contributors cannot be included in the files within this dataset.
