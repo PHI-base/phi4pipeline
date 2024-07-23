@@ -89,6 +89,7 @@ def make_files_for_zenodo(
         fasta_out_path,
         version=phibase_version,
         doi=doi,
+        contributors=contributors,
     )
     with open(out_dir / 'datapackage.json', encoding='utf-8') as f:
         json.dump(datapackage_json, f, indent=4)
