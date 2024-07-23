@@ -160,7 +160,7 @@ def make_datapackage_readme(
     with open(DATA_DIR / 'phi-base_schema.json', encoding='utf-8') as file:
         data_dict = json.load(file)
 
-    data_stats = get_data_stats(pd.read_csv(csv_path))
+    data_stats = get_data_stats(pd.read_csv(csv_path, low_memory=False))
     format_args = {
         'version': version,
         'semver': semver,
