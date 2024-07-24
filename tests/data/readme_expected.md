@@ -68,7 +68,7 @@ for this dataset.)
 
 ## Conditions of use
 
--   **Rights holder**: Rothamsted Research
+-   **Rights holder**: PHI-base
 -   **Licence**: This dataset is available under the [Creative Commons
     Attribution 4.0
     International](https://creativecommons.org/licenses/by/4.0/)
@@ -76,11 +76,11 @@ for this dataset.)
 -   **Cite as**: Rothamsted Research (2021). Pathogen-Host Interaction
     Database, version 4.12. PHI-base, Rothamsted Research,
     Harpenden, UK https://doi.org/10.5281/zenodo.5356871
--   **Conditions of use**: Rothamsted relies on the integrity of users
-    to ensure that Rothamsted Research receives suitable acknowledgment
-    as being the originators of these data. This enables us to monitor
-    the use of each dataset and to demonstrate their value. Please send
-    us a link to any publication that uses this Rothamsted data.
+-   **Conditions of use**: PHI-base relies on the integrity of our users
+    to ensure that PHI-base is acknowledged as the source of this 
+    dataset. Citation enables us to monitor the use of this dataset and
+    to demonstrate its value. Please send us a link to any publication
+    that uses this dataset.
 
 ## Funding
 
