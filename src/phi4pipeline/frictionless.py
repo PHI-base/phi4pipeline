@@ -19,17 +19,21 @@ def load_formatted_datapackage(format_args: dict[str, str], contributors: dict) 
     datapackage = json.loads(template.substitute(**format_args))
     for resource in datapackage['resources']:
         resource['bytes'] = int(resource['bytes'])
-    # Extra caution: explicitly check for NaN since NaN is truthy
-    contributors_with_orcid = (
-        c for c in contributors if c['orcid'] and pd.notna(c['orcid'])
-    )
     datapackage['contributors'] = [
         {
-            'title': 'Anonymous contributor',
-            'path': f'https://orcid.org/{contrib["orcid"]}',
-            'role': 'contributor',
+            k: v for k, v in
+            {
+                'title': contributor['name'],
+                'path': (
+                    f'https://orcid.org/{contributor["orcid"]}'
+                    if contributor['orcid'] else None
+                ),
+                'role': contributor['role_frictionless'],
+                'organization': contributor['affiliation'] or None
+            }.items()
+            if v is not None
         }
-        for contrib in contributors_with_orcid
+        for contributor in contributors
     ]
     return datapackage
 

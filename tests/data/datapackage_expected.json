@@ -47,7 +47,18 @@
   ],
   "contributors": [
     {
-      "title": "Anonymous contributor",
+      "title": "Josiah S. Carberry",
+      "path": "https://orcid.org/0000-0002-1825-0097",
+      "role": "author",
+      "organization": "Brown University"
+    },
+    {
+      "title": "John Smith",
+      "role": "contributor",
+      "organization": "Acme Corporation"
+    },
+    {
+      "title": "Anonymous",
       "path": "https://orcid.org/0000-0002-1825-0097",
       "role": "contributor"
     }
