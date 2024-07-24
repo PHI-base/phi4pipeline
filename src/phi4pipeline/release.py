@@ -10,6 +10,7 @@ import pandas as pd
 
 from phi4pipeline.clean import clean_phibase
 from phi4pipeline.frictionless import (
+    anonymize_contributors,
     make_datapackage_json,
     make_datapackage_readme,
 )
@@ -77,7 +78,9 @@ def make_files_for_zenodo(
     csv_path = out_dir / csv_filename
     fasta_filename = f'phi-base_{phibase_version}_fasta.fas'
     fasta_out_path = out_dir / fasta_filename
-    contributors = load_contributors_file(contributors_path)
+    contributors = anonymize_contributors(
+        load_contributors_file(contributors_path)
+    )
 
     phi_df = prepare_spreadsheet_for_zenodo(spreadsheet_path)
     # Write files now so we can calculate file hash and size.

@@ -34,6 +34,27 @@ def load_formatted_datapackage(format_args: dict[str, str], contributors: dict) 
     return datapackage
 
 
+def anonymize_contributors(contributors_data):
+
+    def anonymize(contributor):
+        contributor = contributor.copy()
+        # Be extra careful to default to anonymization here
+        if contributor['is_private'] is not False:
+            contributor['name'] = 'Anonymous'
+            contributor['affiliation'] = ''
+        return contributor
+
+    anonymized_contributors = map(anonymize, contributors_data)
+
+    # No point including private contributors with no ORCID ID, since
+    # we can't provide any useful information about them.
+    filtered_contributors = [
+        d for d in anonymized_contributors
+        if not (d['is_private'] and not d['orcid'])
+    ]
+    return filtered_contributors
+
+
 def format_datapackage_readme(
     readme_str: str,
     *,
@@ -46,20 +67,6 @@ def format_datapackage_readme(
     TABLE_FORMAT = 'github'
 
     def make_contributors_table(contributors_data):
-        # Anonymize private contributors
-        for d in contributors_data:
-            # Be extra careful to default to anonymization here
-            if d['is_private'] is not False:
-                d['name'] = ''
-                d['affiliation'] = ''
-
-        # No point including private contributors with no ORCID ID, since
-        # we can't provide any useful information about them.
-        filtered_contributors = [
-            d for d in contributors_data
-            if not (d['is_private'] and not d['orcid'])
-        ]
-
         orcid_pattern = re.compile(r'^(\d{4}-\d{4}-\d{4}-(?:\d{4}|\d{3}X))$')
         renames = {
             'name': 'Name',
@@ -68,7 +75,7 @@ def format_datapackage_readme(
             'role_readme': 'Role',
         }
         include_columns = list(renames.keys())
-        df = pd.DataFrame.from_records(filtered_contributors)
+        df = pd.DataFrame.from_records(contributors_data)
         df.name = df.name.replace('', 'Anonymous')
         df.orcid = df.orcid.fillna('').str.replace(
             pat=orcid_pattern, repl=r'[\1](https://orcid.org/\1)', regex=True

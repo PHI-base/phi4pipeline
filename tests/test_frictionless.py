@@ -6,6 +6,7 @@ import pandas as pd
 import pytest
 
 from phi4pipeline.frictionless import (
+    anonymize_contributors,
     format_datapackage_readme,
     get_data_stats,
     get_file_sha1_hash,
@@ -45,6 +46,11 @@ def contributors():
 
 
 @pytest.fixture
+def anonymized_contributors(contributors):
+    return anonymize_contributors(contributors)
+
+
+@pytest.fixture
 def readme_templated():
     path = TEST_DATA_DIR / 'readme_expected.md'
     with open(path, encoding='utf-8') as file:
@@ -52,7 +58,7 @@ def readme_templated():
     return readme_templated
 
 
-def test_load_formatted_datapackage(datapackage_json, contributors):
+def test_load_formatted_datapackage(datapackage_json, anonymized_contributors):
     format_args = {
         'version': VERSION,
         'doi': f'https://doi.org/{DOI}',
@@ -61,12 +67,16 @@ def test_load_formatted_datapackage(datapackage_json, contributors):
         'fasta_hash': '1a65c4809dfa91ea35ae0bd5b3f5c6221e0eab35',
         'fasta_bytes': '5632',
     }
-    actual = load_formatted_datapackage(format_args, contributors)
+    actual = load_formatted_datapackage(format_args, anonymized_contributors)
     expected = datapackage_json
     assert actual == expected
 
 
-def test_format_datapackage_readme(readme_templated, phibase_schema, contributors):
+def test_format_datapackage_readme(
+    readme_templated,
+    phibase_schema,
+    anonymized_contributors,
+):
     readme_path = DATA_DIR / 'readme_template.md'
     with open(readme_path, encoding='utf-8') as text_file:
         readme_str = text_file.read()
@@ -89,7 +99,7 @@ def test_format_datapackage_readme(readme_templated, phibase_schema, contributor
     actual = format_datapackage_readme(
         readme_str,
         format_args=format_args,
-        contributors_data=contributors,
+        contributors_data=anonymized_contributors,
         data_stats=data_stats,
         data_dict=phibase_schema,
     )
@@ -117,13 +127,13 @@ def test_get_file_sha1_hash(path, expected):
     assert actual == expected
 
 
-def test_make_datapackage_json_str(datapackage_json, contributors):
+def test_make_datapackage_json_str(datapackage_json, anonymized_contributors):
     actual = make_datapackage_json(
         CSV_PATH,
         FASTA_PATH,
         version=VERSION,
         doi=DOI,
-        contributors=contributors,
+        contributors=anonymized_contributors,
     )
     expected = datapackage_json
     assert actual == expected
@@ -142,14 +152,48 @@ def test_get_data_stats():
     assert actual == expected
 
 
-def test_make_datapackage_readme(readme_templated, contributors):
+def test_make_datapackage_readme(readme_templated, anonymized_contributors):
     actual = make_datapackage_readme(
         csv_path=TEST_DATA_DIR / 'phi-base_v4-12_cleaned.csv',
         version='4.12',
         semver='4.12.0',
         year=2021,
         doi='10.5281/zenodo.5356871',
-        contributors_data=contributors,
+        contributors_data=anonymized_contributors,
     )
     expected = readme_templated
     assert actual == expected
+
+
+def test_anonymize_contributors(contributors):
+    expected = [
+        {
+            'name': 'Josiah S. Carberry',
+            'orcid': '0000-0002-1825-0097',
+            'role_readme': 'Principal Investigator',
+            'role_frictionless': 'author',
+            'affiliation': 'Brown University',
+            'is_author': True,
+            'is_private': False,
+        },
+        {
+            'name': 'John Smith',
+            'orcid': None,
+            'role_readme': 'Curator',
+            'role_frictionless': 'contributor',
+            'affiliation': 'Acme Corporation',
+            'is_author': False,
+            'is_private': False,
+        },
+        {
+            'name': 'Anonymous',
+            'orcid': '0000-0002-1825-0097',
+            'role_readme': 'Lead curator',
+            'role_frictionless': 'contributor',
+            'affiliation': '',
+            'is_author': False,
+            'is_private': None,
+        },
+    ]
+    actual = anonymize_contributors(contributors)
+    assert expected == actual
