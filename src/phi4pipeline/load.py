@@ -251,4 +251,5 @@ def get_column_header_mapping(phi_df):
 
 
 def load_contributors_file(path):
-    return pd.read_csv(path).to_dict(orient='records')
+    df = pd.read_csv(path)
+    return df.where(df.notnull(), None).to_dict(orient='records')

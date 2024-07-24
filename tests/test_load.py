@@ -25,7 +25,7 @@ def test_load_contributors_file():
         },
         {
             'name': 'John Smith',
-            'orcid': np.nan,
+            'orcid': None,
             'role_readme': 'Curator',
             'role_frictionless': 'contributor',
             'affiliation': 'Acme Corporation',
@@ -39,11 +39,11 @@ def test_load_contributors_file():
             'role_frictionless': 'contributor',
             'affiliation': 'Acme Corporation',
             'is_author': False,
-            'is_private': True,
+            'is_private': None,
         },
         {
             'name': 'John Doe',
-            'orcid': np.nan,
+            'orcid': None,
             'role_readme': 'Curator',
             'role_frictionless': 'contributor',
             'affiliation': 'Acme Corporation',
