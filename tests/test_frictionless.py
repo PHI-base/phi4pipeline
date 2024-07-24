@@ -13,6 +13,7 @@ from phi4pipeline.frictionless import (
     make_datapackage_json,
     make_datapackage_readme,
 )
+from phi4pipeline.load import load_contributors_file
 
 DATA_DIR = importlib.resources.files('phi4pipeline') / 'metadata'
 TEST_DATA_DIR = Path(__file__).parent / 'data'
@@ -40,20 +41,7 @@ def phibase_schema():
 
 @pytest.fixture
 def contributors():
-    return [
-        {
-            'name': 'Josiah Carberry',
-            'orcid': '0000-0002-1825-0097',
-            'role': 'Principal Investigator',
-            'affiliation': 'Brown University',
-        },
-        {
-            'name': 'Jane Smith',
-            'orcid': '',
-            'role': 'Lead curator',
-            'affiliation': 'Acme Corporation',
-        },
-    ]
+    return load_contributors_file(TEST_DATA_DIR / 'contributors.csv')
 
 
 @pytest.fixture
