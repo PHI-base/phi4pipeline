@@ -1,63 +1,62 @@
 {
-    "resources": [
-      {
-        "profile": "tabular-data-resource",
-        "path": "phi-base_v4.12.csv",
-        "name": "phi-base_v4.12",
-        "title": "Pathogen-Host Interaction Database, version 4.12",
-        "description": "Data from version 4.12 of PHI-base, exported as a single table in CSV format.",
-        "format": "csv",
-        "mediatype": "text/csv",
-        "hash": "sha1:2f3c683d41d46de6a0a20f56ba29113ab1449936",
-        "bytes": 8973,
-        "encoding": "utf-8",
-        "schema": "phi-base_schema.json",
-        "dialect": {
-          "csvddfVersion": 1.2,
-          "delimiter": ",",
-          "header": true,
-          "lineTerminator": "\r\n",
-          "quoteChar": "\"",
-          "doubleQuote": true,
-          "skipInitialSpace": false
-        }
-      },
-      {
-        "path": "phi-base_v4.12_fasta.fas",
-        "name": "phi-base_v4.12_fasta",
-        "title": "PHI-base 4.12 FASTA file",
-        "description": "Amino acid sequences, in FASTA format, for all genes in PHI-base 4.12 (where sequences are available).",
-        "format": "fasta",
-        "mediatype": "text/x-fasta",
-        "hash": "sha1:1a65c4809dfa91ea35ae0bd5b3f5c6221e0eab35",
-        "bytes": 5632,
-        "encoding": "ascii"
+  "resources": [
+    {
+      "profile": "tabular-data-resource",
+      "path": "phi-base_v4.12.csv",
+      "name": "phi-base_v4.12",
+      "title": "Pathogen-Host Interaction Database, version 4.12",
+      "description": "Data from version 4.12 of PHI-base, exported as a single table in CSV format.",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "hash": "sha1:2f3c683d41d46de6a0a20f56ba29113ab1449936",
+      "bytes": 8973,
+      "encoding": "utf-8",
+      "schema": "phi-base_schema.json",
+      "dialect": {
+        "csvddfVersion": 1.2,
+        "delimiter": ",",
+        "header": true,
+        "lineTerminator": "\r\n",
+        "quoteChar": "\"",
+        "doubleQuote": true,
+        "skipInitialSpace": false
       }
-    ],
-    "profile": "tabular-data-package",
-    "name": "phi-base",
-    "title": "Pathogen-Host Interaction Database",
-    "id": "https://doi.org/10.5281/zenodo.5356871",
-    "version": "4.12",
-    "homepage": "http://www.phi-base.org",
-    "description": "The pathogen-host interaction database (PHI-base) is an online database that catalogues experimentally-verified pathogenicity, virulence and effector genes from bacterial, fungal and oomycete pathogens, which infect human, animal, plant, insect, fish and fungal hosts. Plant endophytes are also included.\n\nPHI-base aims to aid the discovery of genes in pathogens that are medically and agronomically important, and that may be potential targets for chemical intervention. Information in PHI-base is manually curated by expert curators from peer-reviewed publications. The database is freely accessible to both academic and non-academic users.",
-    "keywords": [
-      "host-pathogen interaction",
-      "Rothamsted Research"
-    ],
-    "contributors": [
-      {
-        "title": "Anonymous contributor",
-        "path": "https://orcid.org/0000-0002-1825-0097",
-        "role": "contributor"
-      }
-    ],
-    "licenses": [
-      {
-        "name": "CC-BY-4.0",
-        "path": "https://creativecommons.org/licenses/by/4.0/",
-        "title": "Creative Commons Attribution 4.0 International"
-      }
-    ]
-  }
-  
+    },
+    {
+      "path": "phi-base_v4.12_fasta.fas",
+      "name": "phi-base_v4.12_fasta",
+      "title": "PHI-base 4.12 FASTA file",
+      "description": "Amino acid sequences, in FASTA format, for all genes in PHI-base 4.12 (where sequences are available).",
+      "format": "fasta",
+      "mediatype": "text/x-fasta",
+      "hash": "sha1:1a65c4809dfa91ea35ae0bd5b3f5c6221e0eab35",
+      "bytes": 5632,
+      "encoding": "ascii"
+    }
+  ],
+  "profile": "tabular-data-package",
+  "name": "phi-base",
+  "title": "Pathogen-Host Interaction Database",
+  "id": "https://doi.org/10.5281/zenodo.5356871",
+  "version": "4.12",
+  "homepage": "http://www.phi-base.org",
+  "description": "The pathogen-host interaction database (PHI-base) is an online database that catalogues experimentally-verified pathogenicity, virulence and effector genes from bacterial, fungal and oomycete pathogens, which infect human, animal, plant, insect, fish and fungal hosts. Plant endophytes are also included.\n\nPHI-base aims to aid the discovery of genes in pathogens that are medically and agronomically important, and that may be potential targets for chemical intervention. Information in PHI-base is manually curated by expert curators from peer-reviewed publications. The database is freely accessible to both academic and non-academic users.",
+  "keywords": [
+    "host-pathogen interaction",
+    "Rothamsted Research"
+  ],
+  "contributors": [
+    {
+      "title": "Anonymous contributor",
+      "path": "https://orcid.org/0000-0002-1825-0097",
+      "role": "contributor"
+    }
+  ],
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "path": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "Creative Commons Attribution 4.0 International"
+    }
+  ]
+}
