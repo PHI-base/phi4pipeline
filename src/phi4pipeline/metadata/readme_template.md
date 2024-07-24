@@ -45,6 +45,10 @@ supplementary FASTA file.
 | phi-base\_{version}\_data.csv  | PHI-base {version} dataset    | An export of data from PHI-base in CSV format.                   |
 | phi-base\_{version}\_fasta.fas | PHI-base {version} FASTA file | Amino acid sequences for each gene in PHI-base, where available. |
 
+## Authors
+
+{authors_table}
+
 ## Contributors
 
 {contributors_table}

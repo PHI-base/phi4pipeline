@@ -51,11 +51,18 @@ supplementary FASTA file.
 | phi-base\_4.12\_data.csv  | PHI-base 4.12 dataset    | An export of data from PHI-base in CSV format.                   |
 | phi-base\_4.12\_fasta.fas | PHI-base 4.12 FASTA file | Amino acid sequences for each gene in PHI-base, where available. |
 
+## Authors
+
+| Name               | ORCID ID                                                     | Affiliation      | Role                   |
+|--------------------|--------------------------------------------------------------|------------------|------------------------|
+| Josiah S. Carberry | [0000-0002-1825-0097](https://orcid.org/0000-0002-1825-0097) | Brown University | Principal Investigator |
+
 ## Contributors
 
-| ORCID ID                                                     | Role                   |
-|--------------------------------------------------------------|------------------------|
-| [0000-0002-1825-0097](https://orcid.org/0000-0002-1825-0097) | Principal Investigator |
+| Name       | ORCID ID                                                     | Affiliation      | Role         |
+|------------|--------------------------------------------------------------|------------------|--------------|
+| John Smith |                                                              | Acme Corporation | Curator      |
+| Anonymous  | [0000-0002-1825-0097](https://orcid.org/0000-0002-1825-0097) |                  | Lead curator |
 
 The data content for PHI-base 4.12 was curated by curators at
 [Molecular Connections Pvt Ltd.](https://molecularconnections.com/)

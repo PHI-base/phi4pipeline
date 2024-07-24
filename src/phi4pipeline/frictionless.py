@@ -46,17 +46,34 @@ def format_datapackage_readme(
     TABLE_FORMAT = 'github'
 
     def make_contributors_table(contributors_data):
+        # Anonymize private contributors
+        for d in contributors_data:
+            # Be extra careful to default to anonymization here
+            if d['is_private'] is not False:
+                d['name'] = ''
+                d['affiliation'] = ''
+
+        # No point including private contributors with no ORCID ID, since
+        # we can't provide any useful information about them.
+        filtered_contributors = [
+            d for d in contributors_data
+            if not (d['is_private'] and not d['orcid'])
+        ]
+
         orcid_pattern = re.compile(r'^(\d{4}-\d{4}-\d{4}-(?:\d{4}|\d{3}X))$')
         renames = {
+            'name': 'Name',
             'orcid': 'ORCID ID',
-            'role': 'Role',
+            'affiliation': 'Affiliation',
+            'role_readme': 'Role',
         }
-        df = pd.DataFrame.from_records(contributors_data)
-        has_orcid = df.orcid.str.match(orcid_pattern, na=False)
-        df.orcid = df.orcid.str.replace(
+        include_columns = list(renames.keys())
+        df = pd.DataFrame.from_records(filtered_contributors)
+        df.name = df.name.replace('', 'Anonymous')
+        df.orcid = df.orcid.fillna('').str.replace(
             pat=orcid_pattern, repl=r'[\1](https://orcid.org/\1)', regex=True
         )
-        display_df = df.loc[has_orcid, ['orcid', 'role']].rename(columns=renames)
+        display_df = df[include_columns].rename(columns=renames)
         table_str = display_df.to_markdown(index=False, tablefmt=TABLE_FORMAT)
         return table_str
 
@@ -92,8 +109,12 @@ def format_datapackage_readme(
         )
         return table_str
 
+    authors = [d for d in contributors_data if d['is_author']]
+    contributors = [d for d in contributors_data if not d['is_author']]
+
     format_args_tables = {
-        'contributors_table': make_contributors_table(contributors_data),
+        'authors_table': make_contributors_table(authors),
+        'contributors_table': make_contributors_table(contributors),
         'data_dictionary': make_data_dict_table(data_dict),
         'data_stats_table': make_data_stats_table(data_stats),
     }
