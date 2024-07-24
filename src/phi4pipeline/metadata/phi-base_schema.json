@@ -387,7 +387,7 @@
             "title": "Reference detail",
             "type": "string",
             "example": "Nature 1994 Jan 27;367(6461):384-6",
-            "description": "The full citation of the referened publication. May be used as a substitute for a missing PubMed ID or DOI."
+            "description": "The full citation of the referenced publication. May be used as a substitute for a missing PubMed ID or DOI."
         },
         {
             "name": "comments",
