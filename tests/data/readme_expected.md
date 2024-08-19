@@ -8,7 +8,7 @@
 
 **Cite as:** Carberry, J. S. (2021).
 The Pathogen-Host Interactions Database, version 4.12 (v4.12)
-\[Data set\]. Zenodo. https://doi.org/10.5281/zenodo.5356871
+\[Data set\]. Zenodo. <https://doi.org/10.5281/zenodo.5356871>
 
 ## Description
 
@@ -82,7 +82,7 @@ for this dataset.)
     licence.
 -   **Cite as**: Carberry, J. S. (2021).
     The Pathogen-Host Interactions Database, version 4.12 (v4.12)
-    \[Data set\]. Zenodo. https://doi.org/10.5281/zenodo.5356871
+    \[Data set\]. Zenodo. <https://doi.org/10.5281/zenodo.5356871>
 -   **Conditions of use**: PHI-base relies on the integrity of our users
     to ensure that PHI-base is acknowledged as the source of this 
     dataset. Citation enables us to monitor the use of this dataset and

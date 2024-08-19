@@ -8,7 +8,7 @@
 
 **Cite as:** {author_list} ({year}).
 The Pathogen-Host Interactions Database, version {version} (v{version})
-\[Data set\]. Zenodo. {doi_url}
+\[Data set\]. Zenodo. <{doi_url}>
 
 ## Description
 
@@ -71,7 +71,7 @@ for this dataset.)
     licence.
 -   **Cite as**: {author_list} ({year}).
     The Pathogen-Host Interactions Database, version {version} (v{version})
-    \[Data set\]. Zenodo. {doi_url}
+    \[Data set\]. Zenodo. <{doi_url}>
 -   **Conditions of use**: PHI-base relies on the integrity of our users
     to ensure that PHI-base is acknowledged as the source of this 
     dataset. Citation enables us to monitor the use of this dataset and
