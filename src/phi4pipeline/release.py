@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: MIT
 
+import importlib
 import json
 import shutil
 from pathlib import Path
@@ -22,6 +23,9 @@ from phi4pipeline.load import (
     load_excel,
 )
 from phi4pipeline.validate import validate_phibase
+
+
+DATA_DIR = importlib.resources.files('phi4pipeline') / 'metadata'
 
 
 def restore_header_rows(column_header_mapping, phi_df):
@@ -117,6 +121,14 @@ def make_files_for_zenodo(
         f.write(readme_text)
     with open(out_dir / 'README.html', 'w+', encoding='utf-8') as f:
         f.write(convert_readme_to_html(readme_text))
+
+    schema_file = DATA_DIR / 'phi-base_schema.json'
+    schema_out = out_dir / 'phi-base_schema.json'
+    with (
+        open(schema_file, 'r', encoding='utf-8') as input_file,
+        open(schema_out, 'w+', encoding='utf-8') as output_file
+    ):
+        output_file.write(input_file.read())
 
 
 def prepare_spreadsheet_for_excel(spreadsheet_path):
