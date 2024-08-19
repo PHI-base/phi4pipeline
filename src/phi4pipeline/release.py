@@ -11,6 +11,7 @@ import pandas as pd
 from phi4pipeline.clean import clean_phibase
 from phi4pipeline.frictionless import (
     anonymize_contributors,
+    convert_readme_to_html,
     make_datapackage_json,
     make_datapackage_readme,
 )
@@ -114,6 +115,8 @@ def make_files_for_zenodo(
     )
     with open(out_dir / 'README.md', 'w+', encoding='utf-8') as f:
         f.write(readme_text)
+    with open(out_dir / 'README.html', 'w+', encoding='utf-8') as f:
+        f.write(convert_readme_to_html(readme_text))
 
 
 def prepare_spreadsheet_for_excel(spreadsheet_path):
