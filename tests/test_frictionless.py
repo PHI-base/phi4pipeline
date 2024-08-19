@@ -7,6 +7,7 @@ import pytest
 
 from phi4pipeline.frictionless import (
     anonymize_contributors,
+    convert_readme_to_html,
     format_datapackage_readme,
     get_data_stats,
     get_file_sha1_hash,
@@ -273,4 +274,13 @@ def test_anonymize_contributors(contributors):
 )
 def test_make_author_list(contributors_data, expected):
     actual = make_author_list(contributors_data)
+    assert expected == actual
+
+
+def test_convert_readme_to_html():
+    with open(TEST_DATA_DIR / 'readme_expected.md', encoding='utf-8') as f:
+        readme_str = f.read()
+    with open(TEST_DATA_DIR / 'readme_expected.html', encoding='utf-8') as f:
+        expected = f.read()
+    actual = convert_readme_to_html(readme_str)
     assert expected == actual

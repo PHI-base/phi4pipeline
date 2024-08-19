@@ -5,7 +5,9 @@ import os
 import re
 from os import PathLike
 from string import Template
+import textwrap
 
+import markdown
 import pandas as pd
 
 DATA_DIR = importlib.resources.files('phi4pipeline') / 'metadata'
@@ -235,3 +237,34 @@ def make_datapackage_readme(
         data_stats=data_stats,
         data_dict=data_dict,
     )
+
+
+def convert_readme_to_html(readme_str):
+    html = markdown.markdown(readme_str, extensions=['tables'])
+    # We aren't using <strong> for emphasis for accessibility purposes,
+    # so <b> should be preferred for visual emphasis.
+    html = re.sub(r'<(/?)strong>', r'<\1b>', html)
+    # Python-Markdown doesn't support CSS, so we must add our own
+    head = textwrap.dedent(r"""
+        <head>
+        <meta charset="utf-8">
+        <style>
+        body {font-family: sans-serif}
+        p, ol, ul {width: 40em}
+        table {border-collapse: collapse}
+        td, th {border: 1px solid black; padding: 0.2em 0.3em}
+        th {font-weight: bold}
+        </style>
+        </head>
+    """).strip()
+    # Python-Markdown only exports an HTML fragment, which we need to wrap.
+    html = '\n'.join((
+        '<html>',
+        head,
+        '<body>',
+        html,
+        '</body>',
+        '</html>',
+        '',  # trailing newline
+    ))
+    return html
