@@ -149,6 +149,7 @@ def format_datapackage_readme(
     contributors = [d for d in contributors_data if not d['is_author']]
 
     format_args_tables = {
+        'author_list': make_author_list(contributors_data),
         'authors_table': make_contributors_table(authors),
         'contributors_table': make_contributors_table(contributors),
         'data_dictionary': make_data_dict_table(data_dict),

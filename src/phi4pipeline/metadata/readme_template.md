@@ -6,9 +6,9 @@
 -   **Published:** {year}
 -   **Publisher:** PHI-base
 
-**Cite as:** Rothamsted Research ({year}). Pathogen-Host Interaction
-Database, version {version}. PHI-base, Rothamsted Research, Harpenden,
-UK {doi_url}
+**Cite as:** {author_list} ({year}).
+The Pathogen-Host Interactions Database, version {version} (v{version})
+\[Data set\]. Zenodo. {doi_url}
 
 ## Description
 
@@ -69,9 +69,9 @@ for this dataset.)
     Attribution 4.0
     International](https://creativecommons.org/licenses/by/4.0/)
     licence.
--   **Cite as**: Rothamsted Research ({year}). Pathogen-Host Interaction
-    Database, version {version}. PHI-base, Rothamsted Research,
-    Harpenden, UK {doi_url}
+-   **Cite as**: {author_list} ({year}).
+    The Pathogen-Host Interactions Database, version {version} (v{version})
+    \[Data set\]. Zenodo. {doi_url}
 -   **Conditions of use**: PHI-base relies on the integrity of our users
     to ensure that PHI-base is acknowledged as the source of this 
     dataset. Citation enables us to monitor the use of this dataset and
