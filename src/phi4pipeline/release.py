@@ -58,8 +58,15 @@ def prepare_spreadsheet_for_zenodo(spreadsheet_path):
     :rtype: pandas.DataFrame
     """
     phi_df = load_phibase_spreadsheet(spreadsheet_path, keep_headers=False)
-    # These columns contain personal information that should not be shared.
-    exclude_columns = ['author_email', 'species_expert', 'entered_by']
+    exclude_columns = [
+        # Columns containing personal information that should not be shared.
+        'author_email',
+        'species_expert',
+        'entered_by',
+        # Empty columns that need not be included in the release.
+        'curation_comments',
+        'todo',
+    ]
     return phi_df.drop(exclude_columns, axis=1, errors='ignore')
 
 
