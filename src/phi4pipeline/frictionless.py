@@ -96,6 +96,8 @@ def format_datapackage_readme(
     TABLE_FORMAT = 'github'
 
     def make_contributors_table(contributors_data):
+        if not contributors_data:
+            return ''
         orcid_pattern = re.compile(r'^(\d{4}-\d{4}-\d{4}-(?:\d{4}|\d{3}X))$')
         renames = {
             'name': 'Name',
