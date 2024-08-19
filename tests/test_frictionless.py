@@ -11,6 +11,7 @@ from phi4pipeline.frictionless import (
     get_data_stats,
     get_file_sha1_hash,
     load_formatted_datapackage,
+    make_author_list,
     make_datapackage_json,
     make_datapackage_readme,
 )
@@ -196,4 +197,80 @@ def test_anonymize_contributors(contributors):
         },
     ]
     actual = anonymize_contributors(contributors)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
+    'contributors_data,expected',
+    [
+        pytest.param(
+            [
+                {
+                    'name': 'Josiah S. Carberry',
+                    'is_author': True,
+                },
+            ],
+            'Carberry, J. S.',
+            id='one_author',
+        ),
+        pytest.param(
+            [
+                {
+                    'name': 'Josiah S. Carberry',
+                    'is_author': True,
+                },
+                {
+                    'name': 'Morgan Gooseberry',
+                    'is_author': True,
+                },
+            ],
+            'Carberry, J. S. & Gooseberry, M.',
+            id='two_authors',
+        ),
+        pytest.param(
+            [
+                {
+                    'name': 'Josiah S. Carberry',
+                    'is_author': True,
+                },
+                {
+                    'name': 'Morgan Gooseberry',
+                    'is_author': True,
+                },
+                {
+                    'name': 'Jo Blueberry',
+                    'is_author': True,
+                },
+            ],
+            'Carberry, J. S., Gooseberry, M. & Blueberry, J.',
+            id='three_authors',
+        ),
+        pytest.param(
+            [
+                {
+                    'name': 'Ronaldo',
+                    'is_author': True,
+                },
+            ],
+            'Ronaldo',
+            id='no_initials',
+        ),
+        pytest.param(
+            [
+                {
+                    'name': 'Josiah S. Carberry',
+                    'is_author': True,
+                },
+                {
+                    'name': 'Jo Smith',
+                    'is_author': False,
+                },
+            ],
+            'Carberry, J. S.',
+            id='with_non_author',
+        ),
+    ],
+)
+def test_make_author_list(contributors_data, expected):
+    actual = make_author_list(contributors_data)
     assert expected == actual

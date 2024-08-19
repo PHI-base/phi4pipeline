@@ -59,6 +59,31 @@ def anonymize_contributors(contributors_data):
     return filtered_contributors
 
 
+def make_author_list(contributors_data):
+
+    def iter_formatted_names(authors):
+        for author in authors:
+            name_parts = author['name'].split()
+            if len(name_parts) == 1:
+                yield name_parts[0]
+                continue
+            last_name = name_parts[-1]
+            initials = ' '.join(f'{x[0].upper()}.' for x in name_parts[:-1])
+            author_name = ', '.join((last_name, initials))
+            yield author_name
+
+    authors = (a for a in contributors_data if a['is_author'])
+    formatted_names = list(iter_formatted_names(authors))
+    author_list = (
+        formatted_names[0]
+        if len(formatted_names) == 1
+        else ' & '.join(
+            (', '.join(formatted_names[:-1]), formatted_names[-1])
+        )
+    )
+    return author_list
+
+
 def format_datapackage_readme(
     readme_str: str,
     *,
