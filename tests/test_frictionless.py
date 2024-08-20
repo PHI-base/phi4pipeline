@@ -9,6 +9,7 @@ from phi4pipeline.frictionless import (
     anonymize_contributors,
     convert_readme_to_html,
     format_datapackage_readme,
+    format_zenodo_description,
     get_data_stats,
     get_file_sha1_hash,
     load_formatted_datapackage,
@@ -286,4 +287,19 @@ def test_convert_readme_to_html():
     with open(TEST_DATA_DIR / 'readme_expected.html', encoding='utf-8') as f:
         expected = f.read()
     actual = convert_readme_to_html(readme_str)
+    assert expected == actual
+
+
+def test_format_zenodo_description():
+    data_stats = {
+        'n_pubs': 4387,
+        'n_interactions': 18190,
+        'n_pathogen_genes': 8411,
+        'n_pathogens': 279,
+        'n_hosts': 228,
+    }
+    version = '4.12'
+    with open(TEST_DATA_DIR / 'description_expected.html', encoding='utf-8') as f:
+        expected = f.read()
+    actual = format_zenodo_description(version, data_stats)
     assert expected == actual

@@ -275,3 +275,21 @@ def convert_readme_to_html(readme_str):
         '',  # trailing newline
     ))
     return html
+
+
+def format_zenodo_description(version, data_stats):
+    template_path = DATA_DIR / 'description_template.md'
+    with open(template_path, encoding='utf-8') as file:
+        description = file.read()
+    # Separate thousands with commas
+    formatted_numbers = {k: f'{v:,}' for k, v in data_stats.items()}
+    formatted_text = description.format(version=version, **formatted_numbers)
+    return markdown.markdown(
+        formatted_text,
+        extensions=['smarty'],
+        extension_configs={
+            'smarty': {
+                'smart_quotes': False,
+            }
+        }
+    ) + '\n'
