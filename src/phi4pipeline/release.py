@@ -13,6 +13,8 @@ from phi4pipeline.clean import clean_phibase
 from phi4pipeline.frictionless import (
     anonymize_contributors,
     convert_readme_to_html,
+    format_zenodo_description,
+    get_data_stats,
     make_datapackage_json,
     make_datapackage_readme,
 )
@@ -95,6 +97,7 @@ def make_files_for_zenodo(
     )
 
     phi_df = prepare_spreadsheet_for_zenodo(spreadsheet_path)
+    data_stats = get_data_stats(phi_df)
     # Write files now so we can calculate file hash and size.
     phi_df.to_csv(csv_path, index=False, lineterminator='\r\n')
     shutil.copyfile(fasta_path, fasta_out_path)
@@ -129,6 +132,14 @@ def make_files_for_zenodo(
         open(schema_out, 'w+', encoding='utf-8') as output_file
     ):
         output_file.write(input_file.read())
+
+    description_file = DATA_DIR / 'description_template.md'
+    description_out = out_dir / 'description.html'
+    with (
+        open(description_file, 'r', encoding='utf-8') as input_file,
+        open(description_out, 'w+', encoding='utf-8') as output_file
+    ):
+        output_file.write(format_zenodo_description(phibase_version, data_stats))
 
 
 def prepare_spreadsheet_for_excel(spreadsheet_path):
