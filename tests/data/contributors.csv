@@ -1,5 +1,5 @@
-name,orcid,role_readme,role_frictionless,affiliation,is_author,is_private
-Josiah S. Carberry,0000-0002-1825-0097,Principal Investigator,author,Brown University,TRUE,FALSE
-John Smith,,Curator,contributor,Acme Corporation,FALSE,FALSE
-Jane Smith,0000-0002-1825-0097,Lead curator,contributor,Acme Corporation,FALSE,
-John Doe,,Curator,contributor,Acme Corporation,FALSE,TRUE
+name,orcid,email,role_readme,role_frictionless,affiliation,is_author,is_private
+Josiah S. Carberry,0000-0002-1825-0097,josiah.carberry@example.org,Principal Investigator,author,Brown University,TRUE,FALSE
+John Smith,,john.smith@example.org,Curator,contributor,Acme Corporation,FALSE,FALSE
+Jane Smith,0000-0002-1825-0097,jane.smith@example.org,Lead curator,contributor,Acme Corporation,FALSE,
+John Doe,,,Curator,contributor,Acme Corporation,FALSE,TRUE

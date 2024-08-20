@@ -17,6 +17,7 @@ def test_load_contributors_file():
         {
             'name': 'Josiah S. Carberry',
             'orcid': '0000-0002-1825-0097',
+            'email': 'josiah.carberry@example.org',
             'role_readme': 'Principal Investigator',
             'role_frictionless': 'author',
             'affiliation': 'Brown University',
@@ -26,6 +27,7 @@ def test_load_contributors_file():
         {
             'name': 'John Smith',
             'orcid': None,
+            'email': 'john.smith@example.org',
             'role_readme': 'Curator',
             'role_frictionless': 'contributor',
             'affiliation': 'Acme Corporation',
@@ -35,6 +37,7 @@ def test_load_contributors_file():
         {
             'name': 'Jane Smith',
             'orcid': '0000-0002-1825-0097',
+            'email': 'jane.smith@example.org',
             'role_readme': 'Lead curator',
             'role_frictionless': 'contributor',
             'affiliation': 'Acme Corporation',
@@ -44,6 +47,7 @@ def test_load_contributors_file():
         {
             'name': 'John Doe',
             'orcid': None,
+            'email': None,
             'role_readme': 'Curator',
             'role_frictionless': 'contributor',
             'affiliation': 'Acme Corporation',

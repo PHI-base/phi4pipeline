@@ -48,6 +48,7 @@
   "contributors": [
     {
       "title": "Josiah S. Carberry",
+      "email": "josiah.carberry@example.org",
       "path": "https://orcid.org/0000-0002-1825-0097",
       "role": "author",
       "organization": "Brown University"

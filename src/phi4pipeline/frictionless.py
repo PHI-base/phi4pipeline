@@ -26,6 +26,7 @@ def load_formatted_datapackage(format_args: dict[str, str], contributors: dict) 
             k: v for k, v in
             {
                 'title': contributor['name'],
+                'email': contributor['email'],
                 'path': (
                     f'https://orcid.org/{contributor["orcid"]}'
                     if contributor['orcid'] else None
@@ -44,9 +45,13 @@ def anonymize_contributors(contributors_data):
 
     def anonymize(contributor):
         contributor = contributor.copy()
-        # Be extra careful to default to anonymization here
+        # Remove emails for non-authors to avoid privacy issues.
+        # Using 'is not bool' to ensure we default to anonymization.
+        if contributor['is_author'] is not True:
+            contributor['email'] = None
         if contributor['is_private'] is not False:
             contributor['name'] = 'Anonymous'
+            contributor['email'] = None
             contributor['affiliation'] = ''
         return contributor
 
@@ -103,6 +108,7 @@ def format_datapackage_readme(
         orcid_pattern = re.compile(r'^(\d{4}-\d{4}-\d{4}-(?:\d{4}|\d{3}X))$')
         renames = {
             'name': 'Name',
+            'email': 'Email',
             'orcid': 'ORCID ID',
             'affiliation': 'Affiliation',
             'role_readme': 'Role',
@@ -113,7 +119,8 @@ def format_datapackage_readme(
         df.orcid = df.orcid.fillna('').str.replace(
             pat=orcid_pattern, repl=r'[\1](https://orcid.org/\1)', regex=True
         )
-        display_df = df[include_columns].rename(columns=renames)
+        non_empty_columns = df[include_columns].notna().any()[lambda x: x == True].index
+        display_df = df[non_empty_columns].rename(columns=renames)
         table_str = display_df.to_markdown(index=False, tablefmt=TABLE_FORMAT)
         return table_str
 

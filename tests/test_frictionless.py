@@ -171,6 +171,7 @@ def test_anonymize_contributors(contributors):
     expected = [
         {
             'name': 'Josiah S. Carberry',
+            'email': 'josiah.carberry@example.org',
             'orcid': '0000-0002-1825-0097',
             'role_readme': 'Principal Investigator',
             'role_frictionless': 'author',
@@ -180,6 +181,7 @@ def test_anonymize_contributors(contributors):
         },
         {
             'name': 'John Smith',
+            'email': None,
             'orcid': None,
             'role_readme': 'Curator',
             'role_frictionless': 'contributor',
@@ -189,6 +191,7 @@ def test_anonymize_contributors(contributors):
         },
         {
             'name': 'Anonymous',
+            'email': None,
             'orcid': '0000-0002-1825-0097',
             'role_readme': 'Lead curator',
             'role_frictionless': 'contributor',
