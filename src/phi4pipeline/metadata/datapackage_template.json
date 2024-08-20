@@ -34,7 +34,6 @@
         "encoding": "ascii"
       }
     ],
-    "profile": "tabular-data-package",
     "name": "phi-base",
     "title": "Pathogen-Host Interaction Database",
     "id": "${doi}",
