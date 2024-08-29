@@ -378,14 +378,18 @@ def get_converted_curation_dates(curation_dates):
     :rtype: pandas.Series
     """
 
-    # First we need to fix inconsistent month-year and year-month dates
-    # with two-digit years, else these will fail to parse.
+    # Some months use long names, which fail to parse, so convert
+    # these to short (3-letter) names.
+    long_month_pattern = r'^([A-Z][a-z]{2})[a-z]+-(\d{2})$'
+    # Now fix inconsistent month-year and year-month dates with two-digit
+    # years, which fail to parse.
     month_year_pattern = r'^([A-Z][a-z]{2})-(\d{2})$'
     year_month_pattern = r'^(\d{2})-([A-Z][a-z]{2})$'
     fixed_dates = (
         curation_dates
         .astype(str)
         .str.strip()
+        .str.replace(long_month_pattern, r'\1-\2', regex=True)
         .str.replace(month_year_pattern, r'\1-20\2', regex=True)
         .str.replace(year_month_pattern, r'\2-20\1', regex=True)
     )

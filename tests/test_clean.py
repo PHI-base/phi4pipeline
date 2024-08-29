@@ -27,6 +27,8 @@ def test_get_converted_curation_dates():
             '2017-02-20',
             '2017-06-01',
             '2019-05-01',
+            '2023-07-01',
+            '2023-10-01',
         ],
         dtype='datetime64[ns]'
     )
@@ -38,6 +40,8 @@ def test_get_converted_curation_dates():
             '20-Feb-17',
             '17-Jun',
             'May 2019',
+            'July-23',
+            'October-23'
         ],
         dtype='object',
     )
