@@ -38,6 +38,7 @@
     "title": "Pathogen-Host Interaction Database",
     "id": "${doi}",
     "version": "${version}",
+    "created": null,
     "homepage": "http://www.phi-base.org",
     "description": "The pathogen-host interaction database (PHI-base) is an online database that catalogues experimentally-verified pathogenicity, virulence and effector genes from bacterial, fungal and oomycete pathogens, which infect human, animal, plant, insect, fish and fungal hosts. Plant endophytes are also included.\n\nPHI-base aims to aid the discovery of genes in pathogens that are medically and agronomically important, and that may be potential targets for chemical intervention. Information in PHI-base is manually curated by expert curators from peer-reviewed publications. The database is freely accessible to both academic and non-academic users.",
     "keywords": [

@@ -4,6 +4,7 @@ import json
 import os
 import re
 import textwrap
+from datetime import datetime
 from os import PathLike
 from string import Template
 
@@ -21,6 +22,7 @@ def load_formatted_datapackage(format_args: dict[str, str], contributors: dict) 
     datapackage = json.loads(template.substitute(**format_args))
     for resource in datapackage['resources']:
         resource['bytes'] = int(resource['bytes'])
+    datapackage['created'] = datetime.now().astimezone().isoformat(timespec='seconds')
     datapackage['contributors'] = [
         {
             k: v for k, v in

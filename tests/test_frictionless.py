@@ -4,6 +4,7 @@ from pathlib import Path
 
 import pandas as pd
 import pytest
+from freezegun import freeze_time
 
 from phi4pipeline.frictionless import (
     anonymize_contributors,
@@ -25,6 +26,8 @@ CSV_PATH = TEST_DATA_DIR / 'phi-base_v4-12_test.csv'
 FASTA_PATH = TEST_DATA_DIR / 'phi-base_v4-12_test.fas'
 VERSION = '4.12'
 DOI = '10.5281/zenodo.5356871'
+# Used in the freeze_time decorator
+CREATED_DATE = "2021-09-02 11:01:15"
 
 
 @pytest.fixture
@@ -61,6 +64,7 @@ def readme_templated():
     return readme_templated
 
 
+@freeze_time(CREATED_DATE, tz_offset=1)
 def test_load_formatted_datapackage(datapackage_json, anonymized_contributors):
     format_args = {
         'version': VERSION,
@@ -130,6 +134,7 @@ def test_get_file_sha1_hash(path, expected):
     assert actual == expected
 
 
+@freeze_time(CREATED_DATE, tz_offset=1)
 def test_make_datapackage_json_str(datapackage_json, anonymized_contributors):
     actual = make_datapackage_json(
         CSV_PATH,
