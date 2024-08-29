@@ -31,15 +31,6 @@ PubMed and FRAC).
 
 This PHI-base dataset is a Frictionless Data Package containing an
 export of the PHI-base database in CSV format (comma-separated values).
-The current version, 4.12, contains the following information:
-
-| Data Type                  |   Count |
-|----------------------------|---------|
-| Publications               |      15 |
-| Pathogen-host interactions |      13 |
-| Pathogen genes             |      16 |
-| Pathogen species           |      10 |
-| Host species               |      10 |
 
 Amino acid sequences for each gene in PHI-base are included as a 
 supplementary FASTA file.

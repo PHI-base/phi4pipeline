@@ -31,9 +31,6 @@ PubMed and FRAC).
 
 This PHI-base dataset is a Frictionless Data Package containing an
 export of the PHI-base database in CSV format (comma-separated values).
-The current version, {version}, contains the following information:
-
-{data_stats_table}
 
 Amino acid sequences for each gene in PHI-base are included as a 
 supplementary FASTA file.
