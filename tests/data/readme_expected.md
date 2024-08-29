@@ -44,9 +44,9 @@ supplementary FASTA file.
 
 ## Authors
 
-| Name               | Email                       | ORCID ID                                                     | Affiliation      | Role                   |
-|--------------------|-----------------------------|--------------------------------------------------------------|------------------|------------------------|
-| Josiah S. Carberry | josiah.carberry@example.org | [0000-0002-1825-0097](https://orcid.org/0000-0002-1825-0097) | Brown University | Principal Investigator |
+| Name               | Email                                                             | ORCID ID                                                     | Affiliation      | Role                   |
+|--------------------|-------------------------------------------------------------------|--------------------------------------------------------------|------------------|------------------------|
+| Josiah S. Carberry | [josiah.carberry@example.org](mailto:josiah.carberry@example.org) | [0000-0002-1825-0097](https://orcid.org/0000-0002-1825-0097) | Brown University | Principal Investigator |
 
 ## Contributors
 

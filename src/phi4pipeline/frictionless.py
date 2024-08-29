@@ -116,6 +116,9 @@ def format_datapackage_readme(
             'role_readme': 'Role',
         }
         include_columns = list(renames.keys())
+        for contributor in contributors_data:
+            if contributor['email']:
+                contributor['email'] = '[{0}](mailto:{0})'.format(contributor['email'])
         df = pd.DataFrame.from_records(contributors_data)
         df.name = df.name.replace('', 'Anonymous')
         df.orcid = df.orcid.fillna('').str.replace(
