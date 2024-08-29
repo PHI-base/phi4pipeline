@@ -3,9 +3,9 @@ import importlib.resources
 import json
 import os
 import re
+import textwrap
 from os import PathLike
 from string import Template
-import textwrap
 
 import markdown
 import pandas as pd
