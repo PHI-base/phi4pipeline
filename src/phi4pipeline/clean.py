@@ -587,7 +587,6 @@ def convert_integer_columns(phi_df):
     """
     integer_columns = (
         'pathogen_id',
-        'pathogen_strain_id',
         'host_id',
         'pmid',
         'year',

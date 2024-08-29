@@ -122,9 +122,9 @@
         {
             "name": "pathogen_strain_id",
             "title": "Pathogen strain ID",
-            "type": "integer",
-            "example": "235443",
-            "description": "The NCBI Taxonomy identifier at the strain level for the strain of the pathogen."
+            "type": "string",
+            "example": "208964; 652611",
+            "description": "The NCBI Taxonomy identifier at the strain level for each strain of the pathogen. Multiple values are delimited with a semicolon."
         },
         {
             "name": "pathogen_strain",

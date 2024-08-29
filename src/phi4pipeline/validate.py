@@ -77,6 +77,7 @@ def validate_phibase(phi_df):
         'nt_sequence': '[ACGT]+',
         'multiple_mutation': 'PHI:\d+(?:; PHI:\d+)*',
         'pathogen_species': "[A-Z][a-z]+ (?:sp\. '.+?'|[a-z]+(?:-[a-z]+)?)(?: VGIII)?",
+        'pathogen_strain_id': r'\d+(?:; \d+)*',
         'host_species': (
             '[A-Z][a-z]+(?: (?:[a-z]+|x [a-z]+|[a-z]+ x [A-Z][a-z]+ [a-z]+))? \(.+?\)'
         ),
