@@ -42,6 +42,7 @@ path = "src/phi4pipeline/__about__.py"
 dependencies = [
   "coverage[toml]>=6.5",
   "pytest",
+  "freezegun==1.5.1",
 ]
 [tool.hatch.envs.default.scripts]
 test = "pytest {args:tests}"
