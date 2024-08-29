@@ -34,7 +34,6 @@
       "encoding": "ascii"
     }
   ],
-  "profile": "tabular-data-package",
   "name": "phi-base",
   "title": "Pathogen-Host Interaction Database",
   "id": "https://doi.org/10.5281/zenodo.5356871",
