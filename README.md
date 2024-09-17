@@ -23,7 +23,7 @@ python -m pip install 'phi4pipeline@git+https://github.com/PHI-base/phi4pipeline
 To generate a cleaned and validated version of the spreadsheet that contains the PHI-base 4 dataset, use the following command:
 
 ```
-python -m phi4pipeline excel -o FILE SPREADSHEET            
+python -m phi4pipeline excel -o FILE SPREADSHEET
 ```
 
 Explanation of arguments:
@@ -43,7 +43,7 @@ python -m phi4pipeline zenodo
 --fasta PATH
 -o DIR
 --year YEAR
-SPREADSHEET               
+SPREADSHEET
 ```
 
 Explanation of arguments:
