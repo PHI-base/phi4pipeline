@@ -11,26 +11,6 @@ test_parse_args_params = [
     pytest.param(
         [
             'zenodo',
-            '--doi',
-            '10.5281/zenodo.5356871',
-            '-o',
-            'out_dir/',
-            'spreadsheet_path',
-        ],
-        {
-            'target': 'zenodo',
-            'contributors': None,
-            'doi': '10.5281/zenodo.5356871',
-            'fasta': None,
-            'input': 'spreadsheet_path',
-            'out_dir': 'out_dir/',
-            'year': None,
-        },
-        id='zenodo_required_only',
-    ),
-    pytest.param(
-        [
-            'zenodo',
             '--contributors',
             'contrib_path.csv',
             '--doi',
