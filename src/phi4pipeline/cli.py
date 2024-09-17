@@ -36,7 +36,7 @@ def parse_args(args):
         metavar='FILE',
         required=True,
         type=str,
-        help='the output directory for the datapackage files',
+        help='the output path for the cleaned PHI-base 4 spreadsheet',
     )
 
     parser_zenodo = subparsers.add_parser('zenodo')
@@ -66,7 +66,7 @@ def parse_args(args):
         metavar='DIR',
         required=True,
         type=str,
-        help='the output path for the cleaned PHI-base 4 spreadsheet',
+        help='the output directory for the datapackage files',
     )
     parser_zenodo.add_argument(
         '--year',
