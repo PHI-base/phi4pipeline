@@ -25,3 +25,6 @@ keywords:
   - database
   - host-pathogen interactions
 license: MIT
+commit: 152293611cd0269f4cb71caba47e7f6ecd71e5f3
+version: 1.0.0
+date-released: '2024-09-17'
