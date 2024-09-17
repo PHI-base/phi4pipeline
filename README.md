@@ -83,3 +83,11 @@ The Contributors file is a CSV file that contains information about the people (
 ## License
 
 `phi4pipeline` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
+
+## Citation
+
+Please use the following citation for this software:
+
+Seager, J. (2024). PHI-base 4 pipeline (1.0.0). Zenodo. https://doi.org/10.5281/zenodo.13773740
+
+See the CITATION.cff file in this repository for more information.
