@@ -83,11 +83,3 @@ The Contributors file is a CSV file that contains information about the people (
 ## License
 
 `phi4pipeline` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
-
-## Citation
-
-Please use the following citation for this software:
-
-
-
-See the CITATION.cff file in this repository for more information.
