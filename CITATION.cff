@@ -13,6 +13,9 @@ authors:
     email: james.seager@rothamsted.ac.uk
     affiliation: Rothamsted Research
     orcid: 'https://orcid.org/0000-0001-7487-610X'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.13773740
 repository-code: 'https://github.com/PHI-base/phi4pipeline'
 abstract: >-
   Python package and command-line application for releasing
