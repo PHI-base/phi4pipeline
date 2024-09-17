@@ -38,11 +38,11 @@ To generate release files to be uploaded to Zenodo, use the following command:
 
 ```
 python -m phi4pipeline zenodo
-[--contributors PATH]
+--contributors PATH
 --doi YEAR
-[--fasta PATH]
+--fasta PATH
 -o DIR
-[--year YEAR]
+--year YEAR
 SPREADSHEET               
 ```
 

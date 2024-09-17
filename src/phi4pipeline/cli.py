@@ -45,6 +45,7 @@ def parse_args(args):
         '--contributors',
         metavar='PATH',
         type=str,
+        required=True,
         help='path to contributors file',
     )
     parser_zenodo.add_argument(
@@ -58,6 +59,7 @@ def parse_args(args):
         '--fasta',
         metavar='PATH',
         type=str,
+        required=True,
         help='path to FASTA file for the dataset',
     )
     parser_zenodo.add_argument(
@@ -72,6 +74,7 @@ def parse_args(args):
         '--year',
         metavar='YEAR',
         type=int,
+        required=True,
         help='year of dataset publication',
     )
     return parser.parse_args(args)
