@@ -49,7 +49,7 @@ def parse_args(args):
     )
     parser_zenodo.add_argument(
         '--doi',
-        metavar='YEAR',
+        metavar='DOI',
         type=str,
         required=True,
         help='DOI for the dataset',
