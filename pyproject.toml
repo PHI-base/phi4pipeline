@@ -31,9 +31,9 @@ dependencies = [
 ]
 
 [project.urls]
-Documentation = "https://github.com/unknown/phi4pipeline#readme"
-Issues = "https://github.com/unknown/phi4pipeline/issues"
-Source = "https://github.com/unknown/phi4pipeline"
+Documentation = "https://github.com/PHI-base/phi4pipeline#readme"
+Issues = "https://github.com/PHI-base/phi4pipeline/issues"
+Source = "https://github.com/PHI-base/phi4pipeline"
 
 [tool.hatch.version]
 path = "src/phi4pipeline/__about__.py"
