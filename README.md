@@ -1,6 +1,6 @@
 # PHI-base 4 pipeline
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10722193.svg)](https://doi.org/10.5281/zenodo.10722193)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13773740.svg)](https://doi.org/10.5281/zenodo.13773740)
 
 Python package and command-line application for releasing the PHI-base 4 dataset in Excel and CSV formats, and preparing metadata and files for the Zenodo repository.
 
