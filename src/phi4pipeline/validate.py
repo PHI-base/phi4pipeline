@@ -81,7 +81,7 @@ def validate_phibase(phi_df):
         ),
         'pathogen_strain_id': r'(?:\d+|(?:\d+|no data found); (?:\d+|no data found)+)',
         'host_species': (
-            '[A-Z][a-z]+(?: (?:[a-z]+|x [a-z]+|[a-z]+ x [A-Z][a-z]+ [a-z]+))? \(.+?\)'
+            r'[A-Z][a-z]+(?: (?:[a-z]+(?: (?:var|subsp)\. [a-z]+)?||x [a-z]+|[a-z]+ x [A-Z][a-z]+ [a-z]+))?(?: \(.+?\))?'
         ),
         'host_genotype_id': (
             '(?:.+ )?(?:UniProt: [0-9A-Z]+|(?:GenBank|Ensembl): \w+)'
