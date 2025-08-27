@@ -1,14 +1,6 @@
 # The Pathogen-Host Interaction Database, version {version}
 
-[doi:{doi}]({doi_url})
-
--   **Version:** {version} ({semver})
--   **Published:** {year}
--   **Publisher:** PHI-base
-
-**Cite as:** {author_list} ({year}).
-The Pathogen-Host Interactions Database, version {version} (v{version})
-\[Data set\]. Zenodo. <{doi_url}>
+**Release date**: 7 August 2025
 
 ## Description
 
@@ -35,6 +27,23 @@ export of the PHI-base database in CSV format (comma-separated values).
 Amino acid sequences for each gene in PHI-base are included as a 
 supplementary FASTA file.
 
+## Conditions of use
+
+-   **Rights holder**: Rothamsted Research
+
+-   **Licence**: Creative Commons Attribution 4.0 International
+    (<https://creativecommons.org/licenses/by/4.0/>)
+
+-   **Citation**: Urban, M., Cuzick, A., Seager, J., & Hammond-Kosack, 
+    K. (2025). The Pathogen-Host Interactions Database, version 4.18
+    [Data set]. Zenodo. <{doi_url}>
+
+Rothamsted Research relies on the integrity of our users to ensure that
+we receive suitable acknowledgment as being the originator of this
+dataset. This enables us to monitor the use of this dataset and to
+demonstrate its value. Please send us a link to any publication that
+uses this dataset.
+
 ## Data contents
 
 | File                           | Name                          | Description                                                      |
@@ -59,30 +68,17 @@ contributors cannot be included in the files within this dataset.
 You can view this information on the [Zenodo record page]({doi_url})
 for this dataset.)
 
-## Conditions of use
-
--   **Rights holder**: PHI-base
--   **Licence**: This dataset is available under the [Creative Commons
-    Attribution 4.0
-    International](https://creativecommons.org/licenses/by/4.0/)
-    licence.
--   **Cite as**: {author_list} ({year}).
-    The Pathogen-Host Interactions Database, version {version} (v{version})
-    \[Data set\]. Zenodo. <{doi_url}>
--   **Conditions of use**: PHI-base relies on the integrity of our users
-    to ensure that PHI-base is acknowledged as the source of this 
-    dataset. Citation enables us to monitor the use of this dataset and
-    to demonstrate its value. Please send us a link to any publication
-    that uses this dataset.
-
 ## Funding
 
-PHI-base version {version} was funded by the [Biotechnology and
-Biological Sciences Research
-Council](http://dx.doi.org/10.13039/501100000268) (BBSRC) through the
-BBR award "A FAIR community resource for pathogens, hosts and their 
-interactions to enhance global food security and human health"
-\[BB/S020020/1\].
+PHI-base version {version} was funded by Rothamsted Research. Rothamsted
+Research receives strategic funding from the Biotechnology and
+Biological Sciences Research Council (BBSRC) of the United Kingdom. We
+acknowledge support from the [Growing
+Health](https://repository.rothamsted.ac.uk/project/98ww1/growing-health-isp)
+(BB/X010953/1) Institute Strategic Programme and the [Delivering
+Sustainable
+Wheat](https://repository.rothamsted.ac.uk/project/98ww2/delivering-sustainable-wheat)
+(BB/X011003/1) Institute Strategic Programme.
 
 ## Technical information
 
@@ -98,8 +94,7 @@ This data package follows several standards that were created by the
     standard describes the columns of the CSV file.
 
 Data in this dataset can be programmatically accessed using the
-[Frictionless Framework](https://framework.frictionlessdata.io/), an
-open-source framework written in Python.
+[Frictionless Framework](https://framework.frictionlessdata.io/).
 
 ## Data dictionary
 
