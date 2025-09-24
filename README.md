@@ -9,13 +9,13 @@ Python package and command-line application for releasing the PHI-base 4 dataset
 Install the latest release from GitHub:
 
 ```
-python -m pip install 'phi4pipeline@git+https://github.com/PHI-base/phi4pipeline.git@1.0.0'
+python -m pip install phi4pipeline@git+https://github.com/PHI-base/phi4pipeline.git@v1.0.0
 ```
 
 Or install the latest commit on the `main` branch:
 
 ```
-python -m pip install 'phi4pipeline@git+https://github.com/PHI-base/phi4pipeline.git@main'
+python -m pip install phi4pipeline@git+https://github.com/PHI-base/phi4pipeline.git@main
 ```
 
 ## Usage
