@@ -167,11 +167,11 @@ def parse_gene_inducer_ids(gene_inducer_ids):
 
     def make_pattern():
         # Make a regular expression to recognise all formats of gene inducer ID.
-        anti_infective_label = '(?P<anti_inf>anti-infective)'
-        chebi_id = 'CHEBI:\s*(?P<chebi_id>\d+)\s*'
-        cas_id = '(?i:CAS\s*(?::|No[.:])\s*)?(?P<cas_id>\d+-\d+-\d+)'
-        text = '(?P<text>[^\s:(]+|\(.+?\))'
-        whitespace = '(?P<whitespace>\s+)'
+        anti_infective_label = r'(?P<anti_inf>anti-infective)'
+        chebi_id = r'CHEBI:\s*(?P<chebi_id>\d+)\s*'
+        cas_id = r'(?i:CAS\s*(?::|No[.:])\s*)?(?P<cas_id>\d+-\d+-\d+)'
+        text = r'(?P<text>[^\s:(]+|\(.+?\))'
+        whitespace = r'(?P<whitespace>\s+)'
         alternatives = (
             f'(?:{anti_infective_label}|{chebi_id}|{cas_id}|{text}|{whitespace})'
         )
@@ -293,9 +293,9 @@ def parse_go_annotation(go_annotation):
     :return: the reformatted GO annotation column
     :rtype: pandas.Series
     """
-    go_id = '(?P<go_id>GO:\d+)'
-    evidence = '(?P<evidence>IDA|IEA|IGI|IMP|IPI|ISS|NAS|ND|TAS)'
-    pattern = re.compile(f'{go_id}(?:[,;]\s*{evidence})?')
+    go_id = r'(?P<go_id>GO:\d+)'
+    evidence = r'(?P<evidence>IDA|IEA|IGI|IMP|IPI|ISS|NAS|ND|TAS)'
+    pattern = re.compile(rf'{go_id}(?:[,;]\s*{evidence})?')
     parsed_rows = []
     for row in go_annotation.values:
         if row is np.nan:
@@ -416,11 +416,11 @@ def apply_replacements(phi_df):
     )
     replacements = {
         'protein_id_source': {
-            '(?i)uniprot': 'UniProt',
+            r'(?i)uniprot': 'UniProt',
         },
         'gene_id_source': {
-            '(?i)(genbank|genban)': 'GenBank',
-            'F\. virguliforme genome database.*': 'FVG',
+            r'(?i)(genbank|genban)': 'GenBank',
+            r'F\. virguliforme genome database.*': 'FVG',
         },
         'protein_id': {
             'A0A0V3MA40.1': 'A0A0V3MA40',
@@ -433,29 +433,29 @@ def apply_replacements(phi_df):
             'HM 486908': 'HM486908',
             'EU770253/EU746409': 'EU770253; EU746409',
             'SeD_A1212 to SeD_A1243': 'SeD_A1212-SeD_A1243',
-            'WP_012027976.1\)': 'WP_012027976',
+            r'WP_012027976.1\)': 'WP_012027976',
             'xp 007930394 1': 'XP_007930394',
             '- ': '-',
         },
         'chromosome_location': {
-            '(?i)unknown': 'unknown',
-            '(?i)chromosome?': 'chromosome',
+            r'(?i)unknown': 'unknown',
+            r'(?i)chromosome?': 'chromosome',
             'chromosome-6': 'chromosome 6',
             'chromosome8': 'chromosome 8',
         },
         'interacting_partners_id': {
             'Uniport': 'UniProt',
-            '(?i)uniprot': 'UniProt',
-            '(?i)gene?bank': 'GenBank',
+            r'(?i)uniprot': 'UniProt',
+            r'(?i)gene?bank': 'GenBank',
             'AAA23130; CAR54869; CAR53776': (
                 'GenBank: AAA23130; GenBank: CAR54869; GenBank: CAR53776'
             ),
-            '^EHA50760$': 'GenBank: EHA50760',
-            '^EAL89498$': 'GenBank: EAL89498',
-            '^Q9M5J9$': 'UniProt: Q9M5J9',
-            ';$': '',
-            ':(?! )': ': ',
-            '\s*;\s*': '; ',
+            r'^EHA50760$': 'GenBank: EHA50760',
+            r'^EAL89498$': 'GenBank: EAL89498',
+            r'^Q9M5J9$': 'UniProt: Q9M5J9',
+            r';$': '',
+            r':(?! )': ': ',
+            r'\s*;\s*': '; ',
         },
         'multiple_mutation': {
             '^no$': np.nan,
@@ -482,7 +482,7 @@ def apply_replacements(phi_df):
         },
         'gene_function': {
             'Adenyly l Cyclase': 'adenylyl cyclase',
-            '\s*-\s*': '-',
+            r'\s*-\s*': '-',
             r'Arf\b': 'ARF',
             'Bi-functional': 'Bifunctional',
             'p erithecial': 'perithecial',
@@ -506,14 +506,14 @@ def apply_replacements(phi_df):
         'mating_defect': yes_no_replacement,
         'pre_penetration_defect': {
             **yes_no_replacement,
-            'no data found \(as no conidiation\)': np.nan,
+            r'no data found \(as no conidiation\)': np.nan,
             'wild type': 'no',
         },
         'penetration_defect': yes_no_replacement,
         'post_penetration_defect': {
             **yes_no_replacement,
-            '^yes reduced': 'yes (reduced)',
-            '^reduced': 'yes (reduced)',
+            r'^yes reduced': 'yes (reduced)',
+            r'^reduced': 'yes (reduced)',
         },
         'essential_gene': yes_no_replacement,
         'gene_inducer': {
@@ -545,11 +545,11 @@ def apply_replacements(phi_df):
             r'\bL\si\b': 'Li',
             r'\bSan\stiago\b': 'Santiago',
             '- ': '-',
-            '[,*]$': '',
+            r'[,*]$': '',
             '\N{LATIN SMALL LETTER DOTLESS I}\N{DIAERESIS}': 'ï',
             '\N{LATIN SMALL LETTER DOTLESS I}\N{ACUTE ACCENT}': 'í',
-            'e\N{ACUTE ACCENT}\s*|\s*\N{ACUTE ACCENT}e': 'é',
-            'o\N{ACUTE ACCENT}\s*|\s*\N{ACUTE ACCENT}o': 'ó',
+            r'e\N{ACUTE ACCENT}\s*|\s*\N{ACUTE ACCENT}e': 'é',
+            r'o\N{ACUTE ACCENT}\s*|\s*\N{ACUTE ACCENT}o': 'ó',
             'Mol Microbiol. 2015 Oct 30': np.nan,
         },
         'reference_source': {
@@ -560,22 +560,22 @@ def apply_replacements(phi_df):
         },
         'doi': {
             '10.1094./MPMI-10-100-0233': '10.1094/MPMI-10-10-0233',
-            '\s*/\s*': '/',
+            r'\s*/\s*': '/',
             mpp_doi: '10.1111/mpp.13321',
         },
         'curator_organization': {
-            '(?i)rres': 'RRes',
-            '\s*/\s*': '; ',
+            r'(?i)rres': 'RRes',
+            r'\s*/\s*': '; ',
         },
         'comments': {
             r'^s$': np.nan,
             r'\.\\': '.',
             r'^Asence\b': 'absence',
-            '\( ': '(',
-            ' \)': ')',
-            'H\. Pylori': 'H. pylori',
-            ' & ': ' and ',
-            ';$': '',
+            r'\( ': '(',
+            r' \)': ')',
+            r'H\. Pylori': 'H. pylori',
+            r' & ': ' and ',
+            r';$': '',
             '\N{WHITE UP-POINTING SMALL TRIANGLE}': '\N{GREEK CAPITAL LETTER DELTA}',
             '\N{RIGHT TRIANGLE}': '\N{GREEK CAPITAL LETTER DELTA}',
         }
@@ -1368,7 +1368,7 @@ def clean_phibase(phi_df):
         # Extract PHI IDs and rejoin them to fix whitespace
         phi_df.multiple_mutation = (
             phi_df.multiple_mutation
-            .str.findall('PHI:\d+')
+            .str.findall(r'PHI:\d+')
             .str.join('; ')
         )
 

@@ -49,64 +49,64 @@ def validate_phibase(phi_df):
 
     def make_gene_inducer_pattern():
         repeat = lambda pat, sep: f'{pat}(?:{sep} {pat})*'
-        chebi = 'CHEBI:\d+'
-        cas = 'CAS:\d+-\d+-\d+'
-        chem_id = f'(?:{chebi}|{cas}|\d+)'
+        chebi = r'CHEBI:\d+'
+        cas = r'CAS:\d+-\d+-\d+'
+        chem_id = rf'(?:{chebi}|{cas}|\d+)'
         chem_ids_L1 = repeat(chem_id, ';')
         chem_ids_L2 = repeat(chem_id, ',')
-        chem_name = '.+(?=([;,]|$))'
+        chem_name = r'.+(?=([;,]|$))'
         chem_names = repeat(chem_name, ',')
         anti_infs = repeat(f'anti-infective: {chem_names}: {chem_ids_L2}', ';')
         labelled_ids = repeat(f'{chem_names}: {chem_ids_L2}', ';')
-        pattern = f'(?:{anti_infs}|{labelled_ids}|{chem_ids_L1}|{chem_names})'
+        pattern = rf'(?:{anti_infs}|{labelled_ids}|{chem_ids_L1}|{chem_names})'
         return pattern
 
     validation_patterns = {
-        'record_id': 'Record \d+',
-        'phi_id': 'PHI:\d+',
+        'record_id': r'Record \d+',
+        'phi_id': r'PHI:\d+',
         'protein_id_source': 'UniProt',
-        'protein_id': '[0-9A-Z]+(?:-[0-9A-Z]+)?|no data found',
+        'protein_id': r'[0-9A-Z]+(?:-[0-9A-Z]+)?|no data found',
         'gene_id_source': (
-            '(EMBL|GenBank|Broad|Ensembl Genomes|MUMDB|ASAP|FCGP|JGI|BROAD|FGDB'
-            '|Ecogene|FTFD|Geo|FVG|MIPS|Author)'
+            r'(EMBL|GenBank|Broad|Ensembl Genomes|MUMDB|ASAP|FCGP|JGI|BROAD|FGDB'
+            r'|Ecogene|FTFD|Geo|FVG|MIPS|Author)'
         ),
         'gene_id': (
-            '(?:AER|ABF)-\d+|\w+-\w+|(Ensembl: )?[\w.]+?'
-            '(; (Ensembl: )?[\w.]+?)*|Myc .+|SPA0021 sRNA'
+            r'(?:AER|ABF)-\d+|\w+-\w+|(Ensembl: )?[\w.]+?'
+            r'(; (Ensembl: )?[\w.]+?)*|Myc .+|SPA0021 sRNA'
         ),
-        'nt_sequence': '[ACGT]+',
-        'multiple_mutation': 'PHI:\d+(?:; PHI:\d+)*',
+        'nt_sequence': r'[ACGT]+',
+        'multiple_mutation': r'PHI:\d+(?:; PHI:\d+)*',
         'pathogen_species': (
-            "(?:[A-Z][a-z]+ ){1,2}(?:cf\. [a-z]+|sp\. '.+?'|[a-z]+(?:-[a-z]+)?)(?: VGIII)?"
+            r"(?:[A-Z][a-z]+ ){1,2}(?:cf\. [a-z]+|sp\. '.+?'|[a-z]+(?:-[a-z]+)?)(?: VGIII)?"
         ),
         'pathogen_strain_id': r'(?:\d+|(?:\d+|no data found); (?:\d+|no data found)+)',
         'host_species': (
             r'[A-Z][a-z]+(?: (?:[a-z]+(?: (?:var|subsp)\. [a-z]+)?||x [a-z]+|[a-z]+ x [A-Z][a-z]+ [a-z]+))?(?: \(.+?\))?'
         ),
         'host_genotype_id': (
-            '(?:.+ )?(?:UniProt: [0-9A-Z]+|(?:GenBank|Ensembl): \w+)'
-            '(?:; (?:.+, )?(?:UniProt: [0-9A-Z]+|(?:GenBank|Ensembl): \w+))*'
+            r'(?:.+ )?(?:UniProt: [0-9A-Z]+|(?:GenBank|Ensembl): \w+)'
+            r'(?:; (?:.+, )?(?:UniProt: [0-9A-Z]+|(?:GenBank|Ensembl): \w+))*'
         ),
         'go_annotation': (
-            'GO:\d{7}(?:, (?:IDA|IEA|IGI|IMP|IPI|ISS|NAS|ND|TAS))?'
-            '(?:; GO:\d{7}(?:, (?:IDA|IEA|IGI|IMP|IPI|ISS|NAS|ND|TAS))?)*'
+            r'GO:\d{7}(?:, (?:IDA|IEA|IGI|IMP|IPI|ISS|NAS|ND|TAS))?'
+            r'(?:; GO:\d{7}(?:, (?:IDA|IEA|IGI|IMP|IPI|ISS|NAS|ND|TAS))?)*'
         ),
-        'database': 'GO',
-        'mating_defect': '(?:yes|no)(?: \(.+?\))?',
-        'pre_penetration_defect': '(?:yes|no)(?: \(.+?\))?',
-        'penetration_defect': '(?:yes|no)(?: \(.+?\))?',
-        'post_penetration_defect': '(?:yes|no|yes/no)(?: \(.+?\))?',
-        'essential_gene': '(?:yes|no)',
+        'database': r'GO',
+        'mating_defect': r'(?:yes|no)(?: \(.+?\))?',
+        'pre_penetration_defect': r'(?:yes|no)(?: \(.+?\))?',
+        'penetration_defect': r'(?:yes|no)(?: \(.+?\))?',
+        'post_penetration_defect': r'(?:yes|no|yes/no)(?: \(.+?\))?',
+        'essential_gene': r'(?:yes|no)',
         'gene_inducer_id': make_gene_inducer_pattern(),
         'host_target_id': (
-            '(?:.+ )?(?:UniProt: [0-9A-Z]+|GenBank: \w+|Ensembl: \S+)'
-            '(?:; (?:.+, )?(?:UniProt: [0-9A-Z]+|GenBank: \w+|Ensembl: \S+))*'
+            r'(?:.+ )?(?:UniProt: [0-9A-Z]+|GenBank: \w+|Ensembl: \S+)'
+            r'(?:; (?:.+, )?(?:UniProt: [0-9A-Z]+|GenBank: \w+|Ensembl: \S+))*'
         ),
-        'species_expert': '[A-Z]+(?:; [A-Z]+)*',
-        'entered_by': '[A-Z]+(?:; [A-Z]+)*',
-        'reference_source': 'PubMed|ISBN|Not in PubMed',
-        'doi': '\d+(?:\.\d+)?/.+|no data found',
-        'curator_organization': '(?:AC|MC|MU|RRes)(?:; (?:AC|MC|MU|RRes))*',
+        'species_expert': r'[A-Z]+(?:; [A-Z]+)*',
+        'entered_by': r'[A-Z]+(?:; [A-Z]+)*',
+        'reference_source': r'PubMed|ISBN|Not in PubMed',
+        'doi': r'\d+(?:\.\d+)?/.+|no data found',
+        'curator_organization': r'(?:AC|MC|MU|RRes)(?:; (?:AC|MC|MU|RRes))*',
     }
     validation_patterns = {k: re.compile(v) for k, v in validation_patterns.items()}
 
