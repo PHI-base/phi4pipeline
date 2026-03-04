@@ -41,7 +41,7 @@ def datapackage_json():
 @pytest.fixture
 def phibase_schema():
     path = DATA_DIR / 'phi-base_schema.json'
-    with open(path, encoding='utf-8') as file:
+    with path.open(encoding='utf-8') as file:
         schema = json.load(file)
     return schema
 
@@ -85,7 +85,7 @@ def test_format_datapackage_readme(
     anonymized_contributors,
 ):
     readme_path = DATA_DIR / 'readme_template.md'
-    with open(readme_path, encoding='utf-8') as text_file:
+    with readme_path.open(encoding='utf-8') as text_file:
         readme_str = text_file.read()
 
     format_args = {
