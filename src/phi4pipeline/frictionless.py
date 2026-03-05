@@ -213,7 +213,7 @@ def make_datapackage_json(
 def get_data_stats(phi_df: pd.DataFrame) -> dict[str, int]:
     return {
         'n_pubs': phi_df.pmid.nunique(),
-        'n_interactions': (
+        'n_interactions': int(
             phi_df[['pathogen_species', 'host_species']]
             .drop_duplicates()
             .value_counts()
