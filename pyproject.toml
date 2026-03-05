@@ -28,6 +28,7 @@ dependencies = [
   "pandas==2.2.2",
   "tabulate",
   "markdown==3.7",
+  "openpyxl==3.1.2",
 ]
 
 [project.urls]
