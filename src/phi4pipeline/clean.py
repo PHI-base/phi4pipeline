@@ -562,6 +562,7 @@ def apply_replacements(phi_df):
             '10.1094./MPMI-10-100-0233': '10.1094/MPMI-10-10-0233',
             r'\s*/\s*': '/',
             mpp_doi: '10.1111/mpp.13321',
+            r'^doi:\s*': '',
         },
         'curator_organization': {
             r'(?i)rres': 'RRes',
