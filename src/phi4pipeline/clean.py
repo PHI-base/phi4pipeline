@@ -419,7 +419,7 @@ def apply_replacements(phi_df):
             r'(?i)uniprot': 'UniProt',
         },
         'gene_id_source': {
-            r'(?i)(genbank|genban)': 'GenBank',
+            r'(?i)(genbank|genban|genebank)': 'GenBank',
             r'F\. virguliforme genome database.*': 'FVG',
         },
         'protein_id': {
