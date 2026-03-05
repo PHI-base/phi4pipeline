@@ -268,6 +268,16 @@ def test_anonymize_contributors(contributors):
         pytest.param(
             [
                 {
+                    'name': 'Sally-Anne Brown',
+                    'is_author': True,
+                },
+            ],
+            'Brown, S. A.',
+            id='hyphenated_name',
+        ),
+        pytest.param(
+            [
+                {
                     'name': 'Josiah S. Carberry',
                     'is_author': True,
                 },
