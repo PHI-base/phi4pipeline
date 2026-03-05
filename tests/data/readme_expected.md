@@ -1,15 +1,5 @@
 # The Pathogen-Host Interaction Database, version 4.12
 
-[doi:10.5281/zenodo.5356871](https://doi.org/10.5281/zenodo.5356871)
-
--   **Version:** 4.12 (4.12.0)
--   **Published:** 2021
--   **Publisher:** PHI-base
-
-**Cite as:** Carberry, J. S. (2021).
-The Pathogen-Host Interactions Database, version 4.12 (v4.12)
-\[Data set\]. Zenodo. <https://doi.org/10.5281/zenodo.5356871>
-
 ## Description
 
 PHI-base is an online biological database (available at
@@ -34,6 +24,32 @@ export of the PHI-base database in CSV format (comma-separated values).
 
 Amino acid sequences for each gene in PHI-base are included as a 
 supplementary FASTA file.
+
+## How to cite
+
+To cite this version of the dataset (version 4.12), use the 
+following citation:
+
+> Carberry, J. S. (2021). The Pathogen-Host Interactions Database,
+> version 4.12. PHI-base, Rothamsted Research, Harpenden, UK
+> <https://doi.org/10.5281/zenodo.5356871>
+
+## Conditions of use
+
+-   **Rights holder**: Rothamsted Research
+
+-   **Licence**: Creative Commons Attribution 4.0 International
+    (<https://creativecommons.org/licenses/by/4.0/>)
+
+-   **Citation**: Carberry, J. S. (2021). The Pathogen-Host 
+    Interactions Database, version 4.12. PHI-base, Rothamsted 
+    Research, Harpenden, UK <https://doi.org/10.5281/zenodo.5356871>
+
+Rothamsted Research relies on the integrity of our users to ensure that
+we receive suitable acknowledgment as being the originator of this
+dataset. This enables us to monitor the use of this dataset and to
+demonstrate its value. Please send us a link to any publication that
+uses this dataset.
 
 ## Data contents
 
@@ -60,34 +76,21 @@ The data content for PHI-base 4.12 was curated by curators at
 in Bangalore, India.
 
 (Note: for data protection reasons, the names and affiliations of
-contributors cannot be included in the files within this dataset.
-You can view this information on the [Zenodo record page](https://doi.org/10.5281/zenodo.5356871)
+some contributors may not be included within this dataset.
+Information about these contributors can instead be seen on the [Zenodo record page](https://doi.org/10.5281/zenodo.5356871)
 for this dataset.)
-
-## Conditions of use
-
--   **Rights holder**: PHI-base
--   **Licence**: This dataset is available under the [Creative Commons
-    Attribution 4.0
-    International](https://creativecommons.org/licenses/by/4.0/)
-    licence.
--   **Cite as**: Carberry, J. S. (2021).
-    The Pathogen-Host Interactions Database, version 4.12 (v4.12)
-    \[Data set\]. Zenodo. <https://doi.org/10.5281/zenodo.5356871>
--   **Conditions of use**: PHI-base relies on the integrity of our users
-    to ensure that PHI-base is acknowledged as the source of this 
-    dataset. Citation enables us to monitor the use of this dataset and
-    to demonstrate its value. Please send us a link to any publication
-    that uses this dataset.
 
 ## Funding
 
-PHI-base version 4.12 was funded by the [Biotechnology and
-Biological Sciences Research
-Council](http://dx.doi.org/10.13039/501100000268) (BBSRC) through the
-BBR award "A FAIR community resource for pathogens, hosts and their 
-interactions to enhance global food security and human health"
-\[BB/S020020/1\].
+PHI-base version 4.12 was funded by Rothamsted Research. Rothamsted
+Research receives strategic funding from the Biotechnology and
+Biological Sciences Research Council (BBSRC) of the United Kingdom. We
+acknowledge support from the [Growing
+Health](https://repository.rothamsted.ac.uk/project/98ww1/growing-health-isp)
+(BB/X010953/1) Institute Strategic Programme and the [Delivering
+Sustainable
+Wheat](https://repository.rothamsted.ac.uk/project/98ww2/delivering-sustainable-wheat)
+(BB/X011003/1) Institute Strategic Programme.
 
 ## Technical information
 
@@ -103,8 +106,7 @@ This data package follows several standards that were created by the
     standard describes the columns of the CSV file.
 
 Data in this dataset can be programmatically accessed using the
-[Frictionless Framework](https://framework.frictionlessdata.io/), an
-open-source framework written in Python.
+[Frictionless Framework](https://framework.frictionlessdata.io/).
 
 ## Data dictionary
 

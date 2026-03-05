@@ -1,7 +1,5 @@
 # The Pathogen-Host Interaction Database, version {version}
 
-**Release date**: 7 August 2025
-
 ## Description
 
 PHI-base is an online biological database (available at
@@ -27,6 +25,15 @@ export of the PHI-base database in CSV format (comma-separated values).
 Amino acid sequences for each gene in PHI-base are included as a 
 supplementary FASTA file.
 
+## How to cite
+
+To cite this version of the dataset (version {version}), use the 
+following citation:
+
+> {author_list} ({year}). The Pathogen-Host Interactions Database,
+> version {version}. PHI-base, Rothamsted Research, Harpenden, UK
+> <{doi_url}>
+
 ## Conditions of use
 
 -   **Rights holder**: Rothamsted Research
@@ -34,9 +41,9 @@ supplementary FASTA file.
 -   **Licence**: Creative Commons Attribution 4.0 International
     (<https://creativecommons.org/licenses/by/4.0/>)
 
--   **Citation**: Urban, M., Cuzick, A., Seager, J., & Hammond-Kosack, 
-    K. (2025). The Pathogen-Host Interactions Database, version 4.18
-    [Data set]. Zenodo. <{doi_url}>
+-   **Citation**: {author_list} ({year}). The Pathogen-Host 
+    Interactions Database, version {version}. PHI-base, Rothamsted 
+    Research, Harpenden, UK <{doi_url}>
 
 Rothamsted Research relies on the integrity of our users to ensure that
 we receive suitable acknowledgment as being the originator of this
@@ -64,8 +71,8 @@ The data content for PHI-base {version} was curated by curators at
 in Bangalore, India.
 
 (Note: for data protection reasons, the names and affiliations of
-contributors cannot be included in the files within this dataset.
-You can view this information on the [Zenodo record page]({doi_url})
+some contributors may not be included within this dataset.
+Information about these contributors can instead be seen on the [Zenodo record page]({doi_url})
 for this dataset.)
 
 ## Funding
