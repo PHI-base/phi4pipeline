@@ -77,6 +77,13 @@ def parse_args(args):
         required=True,
         help='year of dataset publication',
     )
+    parser_zenodo.add_argument(
+        '--release-date',
+        metavar='DATE',
+        type=str,
+        required=False,
+        help='date of dataset publication',
+    )
     return parser.parse_args(args)
 
 
@@ -92,7 +99,9 @@ def run(args):
             doi=args.doi,
             year=args.year,
             fasta_path=args.fasta,
-            contributors_path=args.contributors)
+            contributors_path=args.contributors,
+            release_date=args.release_date,
+        )
     else:
         # argparse should prevent this from being reached
         raise ValueError(f'unsupported target type: {args.target}')

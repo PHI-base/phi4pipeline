@@ -88,6 +88,7 @@ def make_files_for_zenodo(
     year,
     fasta_path=None,
     contributors_path=None,
+    release_date='',
 ):
     out_dir = Path(out_dir)
     phibase_version = get_version_from_filename(spreadsheet_path)
@@ -122,6 +123,7 @@ def make_files_for_zenodo(
         year=year,
         doi=doi,
         contributors_data=contributors,
+        release_date=release_date,
     )
     with open(out_dir / 'README.md', 'w+', encoding='utf-8') as f:
         f.write(readme_text)

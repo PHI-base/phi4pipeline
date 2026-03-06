@@ -22,6 +22,8 @@ test_parse_args_params = [
             '--year',
             '2021',
             'spreadsheet_path.xlsx',
+            '--release-date',
+            '2 January 2021',
         ],
         {
             'target': 'zenodo',
@@ -31,6 +33,7 @@ test_parse_args_params = [
             'input': 'spreadsheet_path.xlsx',
             'out_dir': 'out_dir/',
             'year': 2021,
+            'release_date': '2 January 2021',
         },
         id='zenodo_all_options',
     ),
