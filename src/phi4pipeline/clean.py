@@ -1372,6 +1372,8 @@ def clean_phibase(phi_df):
             .str.findall(r'PHI:\d+')
             .str.join('; ')
         )
+    # Temporary fix for multiple mutation values that are empty strings 
+    phi_df.multiple_mutation = phi_df.multiple_mutation.replace('', np.nan)
 
     phi_df.curation_date = get_converted_curation_dates(phi_df.curation_date)
     phi_df.disease = get_formatted_disease_names(phi_df.disease)
