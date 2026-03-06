@@ -65,6 +65,7 @@ def parse_args(args):
     parser_zenodo.add_argument(
         '-o',
         '--out_dir',
+        '--out-dir',
         metavar='DIR',
         required=True,
         type=str,
