@@ -73,6 +73,9 @@ def prepare_spreadsheet_for_zenodo(spreadsheet_path):
         # Empty columns that need not be included in the release.
         'curation_comments',
         'todo',
+        # Columns only relevant for internal use.
+        'file_name',
+        'batch_number',
     ]
     return phi_df.drop(exclude_columns, axis=1, errors='ignore')
 
