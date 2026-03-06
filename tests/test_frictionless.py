@@ -94,6 +94,7 @@ def test_format_datapackage_readme(
         'year': '2021',
         'doi': DOI,
         'doi_url': f'https://doi.org/{DOI}',
+        'release_date': '2 January 2021',
     }
     data_stats = {
         'n_pubs': 15,
@@ -168,6 +169,7 @@ def test_make_datapackage_readme(readme_templated, anonymized_contributors):
         year=2021,
         doi='10.5281/zenodo.5356871',
         contributors_data=anonymized_contributors,
+        release_date='2 January 2021',
     )
     expected = readme_templated
     assert actual == expected

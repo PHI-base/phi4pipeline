@@ -1,5 +1,7 @@
 # The Pathogen-Host Interaction Database, version 4.12
 
+**Release date**: 2 January 2021
+
 ## Description
 
 PHI-base is an online biological database (available at

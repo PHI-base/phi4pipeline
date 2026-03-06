@@ -1,5 +1,7 @@
 # The Pathogen-Host Interaction Database, version {version}
 
+**Release date**: {release_date}
+
 ## Description
 
 PHI-base is an online biological database (available at

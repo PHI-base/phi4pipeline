@@ -232,6 +232,7 @@ def make_datapackage_readme(
     year: int | str,
     doi: str,
     contributors_data: list[dict[str, str]],
+    release_date: str,
 ) -> str:
     with open(DATA_DIR / 'readme_template.md', encoding='utf-8') as file:
         readme_str = file.read()
@@ -245,6 +246,7 @@ def make_datapackage_readme(
         'year': f'{year}',
         'doi': doi,
         'doi_url': f'https://doi.org/{doi}',
+        'release_date': release_date,
     }
     return format_datapackage_readme(
         readme_str,
